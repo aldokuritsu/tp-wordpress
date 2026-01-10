@@ -1,0 +1,87 @@
+:root {
+    --espresso: #2C1810;
+    --torrefaction: #6B4423;
+    --creme: #F5F0E8;
+    --kraft: #D4C4A8;
+    --cuivre: #B87333;
+    --blanc-casse: #FEFDFB;
+    --shadow: rgba(44, 24, 16, 0.12);
+    --success: #2d5a27;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--creme);
+    color: var(--espresso);
+    line-height: 1.7;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--espresso);
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 3px solid var(--cuivre);
+    padding-bottom: 0.5rem;
+}
+
+h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--torrefaction);
+}
+
+.step {
+    background: var(--blanc-casse);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 15px var(--shadow);
+    border-left: 4px solid var(--cuivre);
+}
+
+.step-number {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    background: var(--espresso);
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 28px;
+    margin-right: 0.5rem;
+    font-weight: bold;
+}
+
+.tip {
+    background: rgba(184, 115, 51, 0.1);
+    border: 1px solid var(--cuivre);
+    padding: 1rem;
+    border-radius: 6px;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.tip strong {
+    color: var(--cuivre);
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 2rem;
+    color: var(--cuivre);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}

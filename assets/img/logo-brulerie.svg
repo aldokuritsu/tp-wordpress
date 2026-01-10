@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 80">
+  <!-- Grain de café stylisé -->
+  <g transform="translate(10, 8)">
+    <!-- Forme du grain -->
+    <ellipse cx="32" cy="32" rx="26" ry="32" fill="#6B4423"/>
+    <!-- Ligne centrale du grain -->
+    <path d="M32 8 Q28 32 32 56 Q36 32 32 8" fill="none" stroke="#2C1810" stroke-width="3" stroke-linecap="round"/>
+    <!-- Reflet -->
+    <ellipse cx="22" cy="20" rx="6" ry="10" fill="#B87333" opacity="0.3"/>
+  </g>
+  
+  <!-- Texte principal -->
+  <text x="75" y="38" font-family="Georgia, serif" font-size="24" font-weight="bold" fill="#2C1810">
+    BRÛLERIE
+  </text>
+  <text x="75" y="60" font-family="Georgia, serif" font-size="16" fill="#6B4423" letter-spacing="2">
+    DU VIEUX MOULIN
+  </text>
+  
+  <!-- Ligne décorative -->
+  <line x1="75" y1="42" x2="200" y2="42" stroke="#B87333" stroke-width="1"/>
+</svg>

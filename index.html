@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP WordPress — Brûlerie du Vieux Moulin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="logo">
+                <div class="bean"></div>
+                TP WordPress
+            </a>
+            <button class="mobile-toggle" onclick="toggleNav()">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12h18M3 6h18M3 18h18" />
+                </svg>
+            </button>
+            <ul id="nav-menu">
+                <li><a href="#brief">Brief</a></li>
+                <li><a href="#etapes">Étapes</a></li>
+                <li><a href="#contenus">Contenus</a></li>
+                <li><a href="#charte">Charte</a></li>
+                <li><a href="#ressources">Ressources</a></li>
+                <li><a href="#images">Images</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Travaux Pratiques</div>
+            <h1>Brûlerie du <span>Vieux Moulin</span></h1>
+            <p>Créez le site vitrine d'un torréfacteur artisanal sous WordPress.<br>Cochez les tâches au fur et à mesure
+                pour valider vos compétences.</p>
+            <a href="#etapes" class="hero-cta">
+                Commencer le TP
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <div class="main-container">
+        <main>
+            <section id="brief">
+                <div class="section-header">
+                    <h2>📋 Le Brief Client</h2>
+                    <p class="subtitle">Contexte et objectifs du projet</p>
+                </div>
+
+                <div class="card">
+                    <h3><span class="icon">👤</span> Le Client</h3>
+                    <div class="client-grid">
+                        <span class="label">Entreprise</span>
+                        <span class="value">Brûlerie du Vieux Moulin</span>
+                        <span class="label">Activité</span>
+                        <span class="value">Torréfaction artisanale de cafés de spécialité</span>
+                        <span class="label">Adresse</span>
+                        <span class="value">12 rue des Artisans, 44000 Nantes</span>
+                        <span class="label">Contact</span>
+                        <span class="value">Marie Duval, gérante</span>
+                        <span class="label">Email</span>
+                        <span class="value">contact@brulerieduvieuxmoulin.fr</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3><span class="icon">📝</span> Contexte</h3>
+                    <p style="color: var(--torrefaction);">Marie a repris il y a 3 ans un ancien moulin à grain qu'elle
+                        a transformé en atelier de torréfaction. Elle sélectionne ses cafés verts auprès de producteurs
+                        en Éthiopie, Colombie, Brésil et Guatemala, puis les torréfie sur place avec un torréfacteur
+                        Probat des années 60.</p>
+                    <p style="color: var(--torrefaction); margin-top: 0.75rem;">Elle souhaite un <strong>site
+                            vitrine</strong> pour développer sa visibilité, avec la possibilité d'ajouter une
+                        <strong>boutique en ligne</strong> plus tard.
+                    </p>
+                </div>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <section id="etapes">
+                <div class="section-header">
+                    <h2>✅ Étapes de réalisation</h2>
+                    <p class="subtitle">Cochez chaque tâche une fois terminée</p>
+                </div>
+
+                <div class="completion-banner" id="completion-banner">
+                    <h3>🎉 Félicitations !</h3>
+                    <p>Vous avez terminé toutes les tâches. Votre site est prêt pour Elementor !</p>
+                </div>
+
+                <div class="card">
+                    <h3><span class="icon">⚙️</span> 1. Configuration initiale</h3>
+                    <div class="task-list">
+                        <label class="task-item" data-task="connect" data-skills="connexion">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Se connecter à l'administration WordPress</div>
+                                <div class="task-skills">
+                                    <a href="aide/identite-site.html" class="skill-tag">Connexion (Tableau de bord)</a>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="task-item" data-task="title" data-skills="reglages-generaux">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Modifier le titre du site : "Brûlerie du Vieux Moulin"</div>
+                                <div class="task-skills">
+                                    <a href="aide/identite-site.html" class="skill-tag">Réglages généraux</a>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="task-item" data-task="slogan" data-skills="reglages-generaux">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Ajouter le slogan : "Torréfaction artisanale à Nantes"</div>
+                                <div class="task-skills">
+                                    <a href="aide/identite-site.html" class="skill-tag">Réglages généraux</a>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="task-item" data-task="permalinks" data-skills="permaliens">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Configurer les permaliens en "Nom de l'article"</div>
+                                <div class="task-skills">
+                                    <a href="aide/permaliens.html" class="skill-tag">Réglages des permaliens</a>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3><span class="icon">🎨</span> 2. Choix du thème</h3>
+                    <div class="task-list">
+                        <label class="task-item" data-task="theme-search" data-skills="themes">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Rechercher et installer un thème gratuit (ex: Astra)</div>
+                                <div class="task-skills">
+                                    <a href="aide/themes.html" class="skill-tag">Thèmes WordPress</a>
+                                    <a href="aide/themes.html" class="skill-tag">Apparence > Thèmes</a>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="task-item" data-task="theme-activate" data-skills="themes">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Activer le thème choisi</div>
+                                <div class="task-skills">
+                                    <a href="aide/themes.html" class="skill-tag">Activation</a>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3><span class="icon">✨</span> 3. Identité visuelle</h3>
+                    <div class="task-list">
+                        <label class="task-item" data-task="logo" data-skills="customizer,logo">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Ajouter le logo dans le header</div>
+                                <div class="task-skills">
+                                    <a href="aide/identite-site.html" class="skill-tag">Personnaliser</a>
+                                    <a href="aide/identite-site.html" class="skill-tag">Logo du site</a>
+                                </div>
+                                <div class="task-resources">
+                                    <a href="#ressources" class="task-resource-link">📥 Télécharger le logo</a>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="task-item" data-task="favicon" data-skills="customizer,favicon">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Ajouter la favicon (icône d'onglet)</div>
+                                <div class="task-skills">
+                                    <a href="aide/identite-site.html" class="skill-tag">Personnaliser</a>
+                                    <a href="aide/identite-site.html" class="skill-tag">Icône du site</a>
+                                </div>
+                                <div class="task-resources">
+                                    <a href="#ressources" class="task-resource-link">📥 Télécharger la favicon</a>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3><span class="icon">🖼️</span> 4. Import des médias</h3>
+                    <div class="task-list">
+                        <label class="task-item" data-task="import-images" data-skills="bibliotheque,import-medias">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Importer au moins 5 images dans la bibliothèque</div>
+                                <div class="task-skills">
+                                    <a href="aide/mediatheque.html" class="skill-tag">Médiathèque</a>
+                                    <a href="aide/mediatheque.html" class="skill-tag">Téléverser des médias</a>
+                                </div>
+                                <div class="task-resources">
+                                    <a href="#images" class="task-resource-link">🔗 Voir les liens Unsplash</a>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="task-item" data-task="alt-text" data-skills="texte-alternatif">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Ajouter un texte alternatif (alt) à chaque image</div>
+                                <div class="task-skills">
+                                    <a href="aide/mediatheque.html" class="skill-tag">Texte alternatif (alt)</a>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3><span class="icon">📄</span> 5. Création des pages</h3>
+                    <div class="task-list">
+                        <label class="task-item" data-task="page-accueil"
+                            data-skills="creer-page,editeur-blocs,inserer-image">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Créer la page "Accueil" avec texte et image</div>
+                                <div class="task-skills">
+                                    <a href="aide/editeur.html" class="skill-tag">Créer une page</a>
+                                    <a href="aide/editeur.html" class="skill-tag">Éditeur (Gutenberg)</a>
+                                    <a href="aide/editeur.html" class="skill-tag">Ajouter un bloc Image</a>
+                                </div>
+                                <div class="task-resources">
+                                    <a href="#contenus" class="task-resource-link">📝 Voir le texte d'intro</a>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="task-item" data-task="page-histoire" data-skills="creer-page,editeur-blocs">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Créer la page "Notre histoire"</div>
+                                <div class="task-skills">
+                                    <a href="aide/editeur.html" class="skill-tag">Créer une page</a>
+                                    <a href="aide/editeur.html" class="skill-tag">Éditeur (Gutenberg)</a>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="task-item" data-task="page-cafes"
+                            data-skills="creer-page,editeur-blocs,inserer-image">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Créer la page "Nos cafés" avec les 4 fiches produits</div>
+                                <div class="task-skills">
+                                    <a href="aide/editeur.html" class="skill-tag">Créer une page</a>
+                                    <a href="aide/editeur.html" class="skill-tag">Éditeur (Gutenberg)</a>
+                                    <a href="aide/editeur.html" class="skill-tag">Ajouter un bloc Image</a>
+                                </div>
+                                <div class="task-resources">
+                                    <a href="#contenus" class="task-resource-link">📝 Voir les fiches cafés</a>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="task-item" data-task="page-torrefaction" data-skills="creer-page,editeur-blocs">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Créer la page "La torréfaction"</div>
+                                <div class="task-skills">
+                                    <a href="aide/editeur.html" class="skill-tag">Créer une page</a>
+                                    <a href="aide/editeur.html" class="skill-tag">Éditeur (Gutenberg)</a>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="task-item" data-task="page-boutique"
+                            data-skills="creer-page,editeur-blocs,inserer-image">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Créer la page "La boutique" avec horaires</div>
+                                <div class="task-skills">
+                                    <a href="aide/editeur.html" class="skill-tag">Créer une page</a>
+                                    <a href="aide/editeur.html" class="skill-tag">Éditeur (Gutenberg)</a>
+                                    <a href="aide/editeur.html" class="skill-tag">Ajouter un bloc Image</a>
+                                </div>
+                                <div class="task-resources">
+                                    <a href="#contenus" class="task-resource-link">📝 Voir les horaires</a>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="task-item" data-task="page-contact" data-skills="creer-page,editeur-blocs">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Créer la page "Contact"</div>
+                                <div class="task-skills">
+                                    <a href="aide/editeur.html" class="skill-tag">Créer une page</a>
+                                    <a href="aide/editeur.html" class="skill-tag">Éditeur (Gutenberg)</a>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="task-item" data-task="publish-pages" data-skills="publier">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Publier toutes les pages</div>
+                                <div class="task-skills">
+                                    <a href="aide/editeur.html" class="skill-tag">Publier</a>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3><span class="icon">🧭</span> 6. Navigation</h3>
+                    <div class="task-list">
+                        <label class="task-item" data-task="create-menu" data-skills="creer-menu">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Créer un menu "Menu principal"</div>
+                                <div class="task-skills">
+                                    <a href="aide/menus.html" class="skill-tag">Créer un menu</a>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="task-item" data-task="add-pages-menu"
+                            data-skills="ajouter-pages-menu,reorganiser-menu">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Ajouter les 6 pages au menu dans l'ordre</div>
+                                <div class="task-skills">
+                                    <a href="aide/menus.html" class="skill-tag">Ajouter des éléments au menu</a>
+                                    <a href="aide/menus.html" class="skill-tag">Structure du menu</a>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="task-item" data-task="assign-menu" data-skills="assigner-menu">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Assigner le menu à l'emplacement "Menu principal"</div>
+                                <div class="task-skills">
+                                    <a href="aide/menus.html" class="skill-tag">Emplacements de menus</a>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3><span class="icon">🔌</span> 7. Extensions & Fonctionnalités</h3>
+                    <div class="task-list">
+                        <label class="task-item" data-task="plugin-contact"
+                            data-skills="installer-extension,activer-extension">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Installer une extension de formulaire (ex: WPForms)</div>
+                                <div class="task-skills">
+                                    <a href="aide/extensions.html" class="skill-tag">Extensions</a>
+                                    <a href="aide/extensions.html" class="skill-tag">Formulaire de contact</a>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="task-item" data-task="plugin-seo"
+                            data-skills="installer-extension,activer-extension">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Installer une extension SEO (ex: Yoast SEO)</div>
+                                <div class="task-skills">
+                                    <a href="aide/extensions.html" class="skill-tag">SEO</a>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3><span class="icon">🏁</span> 8. Réglages finaux</h3>
+                    <div class="task-list">
+                        <label class="task-item" data-task="homepage" data-skills="page-accueil-statique">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Définir "Accueil" comme page d'accueil statique</div>
+                                <div class="task-skills">
+                                    <a href="aide/permaliens.html" class="skill-tag">Réglages de la page d'accueil</a>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="task-item" data-task="test-nav" data-skills="verification">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Tester la navigation sur le site (front-end)</div>
+                                <div class="task-skills">
+                                    <a href="#" class="skill-tag">Prévisualiser le site</a>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="card" style="border: 2px dashed var(--cuivre);">
+                    <h3><span class="icon">⭐</span> Bonus (pour aller plus loin)</h3>
+                    <div class="task-list">
+                        <label class="task-item" data-task="bonus-article"
+                            data-skills="creer-article,difference-page-article">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Créer un article "Notre nouveau café du mois"</div>
+                                <div class="task-skills">
+                                    <a href="aide/editeur.html" class="skill-tag">Créer un article</a>
+                                    <a href="aide/editeur.html" class="skill-tag">Pages vs Articles</a>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="task-item" data-task="bonus-page-builder"
+                            data-skills="installer-extension,activer-extension">
+                            <input type="checkbox">
+                            <span class="task-checkbox">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="2,7 6,11 12,3" />
+                                </svg>
+                            </span>
+                            <div class="task-content">
+                                <div class="task-title">Essayer un constructeur de page (ex: Elementor)</div>
+                                <div class="task-skills">
+                                    <a href="aide/extensions.html" class="skill-tag">Page Builder</a>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <section id="contenus">
+                <div class="section-header">
+                    <h2>📝 Contenus à utiliser</h2>
+                    <p class="subtitle">Textes prêts à copier-coller</p>
+                </div>
+
+                <div class="card">
+                    <h3><span class="icon">🏠</span> Page Accueil</h3>
+                    <div class="content-block">
+                        <h5>Texte d'introduction</h5>
+                        <p id="text-intro">Depuis 2021, la Brûlerie du Vieux Moulin perpétue l'art de la torréfaction
+                            artisanale au cœur de Nantes. Dans notre ancien moulin à grain reconverti, nous
+                            sélectionnons et torréfions des cafés d'exception issus des meilleures plantations
+                            d'Amérique latine et d'Afrique. Chaque lot est torréfié à la commande sur notre Probat des
+                            années 60, pour vous garantir une fraîcheur et des arômes incomparables.</p>
+                        <button class="copy-text-btn" onclick="copyText('text-intro')">📋 Copier</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3><span class="icon">☕</span> Page Nos cafés</h3>
+                    <div class="coffee-grid">
+                        <div class="coffee-card">
+                            <h5>Éthiopie Yirgacheffe</h5>
+                            <div class="details">
+                                <strong>Origine :</strong> Région de Sidamo<br>
+                                <strong>Altitude :</strong> 1 800 - 2 200 m<br>
+                                <strong>Process :</strong> Lavé<br>
+                                <strong>Notes :</strong> Floral, agrumes, bergamote<br>
+                                <strong>Torréfaction :</strong> Légère à moyenne
+                            </div>
+                        </div>
+                        <div class="coffee-card">
+                            <h5>Colombie Huila</h5>
+                            <div class="details">
+                                <strong>Origine :</strong> Département de Huila<br>
+                                <strong>Altitude :</strong> 1 500 - 1 800 m<br>
+                                <strong>Process :</strong> Lavé<br>
+                                <strong>Notes :</strong> Caramel, noisette, fruits rouges<br>
+                                <strong>Torréfaction :</strong> Moyenne
+                            </div>
+                        </div>
+                        <div class="coffee-card">
+                            <h5>Brésil Cerrado</h5>
+                            <div class="details">
+                                <strong>Origine :</strong> Minas Gerais<br>
+                                <strong>Altitude :</strong> 900 - 1 200 m<br>
+                                <strong>Process :</strong> Natural<br>
+                                <strong>Notes :</strong> Chocolat, noix, corps rond<br>
+                                <strong>Torréfaction :</strong> Moyenne à foncée
+                            </div>
+                        </div>
+                        <div class="coffee-card">
+                            <h5>Guatemala Antigua</h5>
+                            <div class="details">
+                                <strong>Origine :</strong> Vallée d'Antigua<br>
+                                <strong>Altitude :</strong> 1 500 - 1 700 m<br>
+                                <strong>Process :</strong> Lavé<br>
+                                <strong>Notes :</strong> Épices, cacao, orange<br>
+                                <strong>Torréfaction :</strong> Moyenne
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3><span class="icon">🏪</span> Page La boutique</h3>
+                    <div class="content-block">
+                        <h5>Horaires d'ouverture</h5>
+                        <p id="text-horaires">Mardi au vendredi : 9h30 - 13h00 / 14h30 - 19h00<br>Samedi : 9h00 - 18h00
+                            (non-stop)<br>Dimanche et lundi : Fermé</p>
+                        <button class="copy-text-btn" onclick="copyText('text-horaires')">📋 Copier</button>
+                    </div>
+                    <div class="content-block">
+                        <h5>Adresse</h5>
+                        <p id="text-adresse">Brûlerie du Vieux Moulin<br>12 rue des Artisans<br>44000 Nantes</p>
+                        <button class="copy-text-btn" onclick="copyText('text-adresse')">📋 Copier</button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <section id="charte">
+                <div class="section-header">
+                    <h2>🎨 Charte graphique</h2>
+                    <p class="subtitle">Couleurs et typographies recommandées</p>
+                </div>
+
+                <div class="card">
+                    <h3><span class="icon">🎨</span> Palette de couleurs</h3>
+                    <div class="colors-grid">
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #2C1810;"></div>
+                            <div class="name">Espresso</div>
+                            <div class="hex">#2C1810</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #6B4423;"></div>
+                            <div class="name">Torréfaction</div>
+                            <div class="hex">#6B4423</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #F5F0E8;"></div>
+                            <div class="name">Crème</div>
+                            <div class="hex">#F5F0E8</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #D4C4A8;"></div>
+                            <div class="name">Kraft</div>
+                            <div class="hex">#D4C4A8</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #B87333;"></div>
+                            <div class="name">Cuivre</div>
+                            <div class="hex">#B87333</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #FEFDFB; border-color: #ccc;"></div>
+                            <div class="name">Blanc cassé</div>
+                            <div class="hex">#FEFDFB</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3><span class="icon">✏️</span> Typographies Google Fonts</h3>
+                    <p style="color: var(--torrefaction); margin-bottom: 1rem;"><strong>Titres :</strong> Playfair
+                        Display (serif, bold)<br><strong>Texte :</strong> Lato (sans-serif, regular & bold)</p>
+                    <div class="prompt-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                        &lt;link
+                        href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap"
+                        rel="stylesheet"&gt;
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <section id="ressources">
+                <div class="section-header">
+                    <h2>📥 Ressources à télécharger</h2>
+                    <p class="subtitle">Logo et favicon</p>
+                </div>
+
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-preview">
+                            <img src="assets/img/logo-brulerie.svg" alt="Logo">
+                        </div>
+                        <div class="resource-info">
+                            <h4>Logo SVG</h4>
+                            <p>Version vectorielle</p>
+                            <a href="assets/img/logo-brulerie.svg" download class="download-btn">📥 Télécharger</a>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-preview">
+                            <img src="assets/img/logo-brulerie.png" alt="Logo PNG">
+                        </div>
+                        <div class="resource-info">
+                            <h4>Logo PNG</h4>
+                            <p>600px, fond transparent</p>
+                            <a href="assets/img/logo-brulerie.png" download class="download-btn">📥 Télécharger</a>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-preview favicon">
+                            <img src="assets/img/favicon.svg" alt="Favicon">
+                        </div>
+                        <div class="resource-info">
+                            <h4>Favicon</h4>
+                            <p>Icône grain de café</p>
+                            <a href="assets/img/favicon.svg" download class="download-btn">📥 Télécharger</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <section id="images">
+                <div class="section-header">
+                    <h2>🖼️ Banque d'images</h2>
+                    <p class="subtitle">Liens Unsplash (libres de droits)</p>
+                </div>
+
+                <div class="card">
+                    <div class="tabs">
+                        <button class="tab-btn active" onclick="switchTab('hero')">Hero</button>
+                        <button class="tab-btn" onclick="switchTab('savoir')">Savoir-faire</button>
+                        <button class="tab-btn" onclick="switchTab('cafes')">Cafés</button>
+                        <button class="tab-btn" onclick="switchTab('boutique')">Boutique</button>
+                    </div>
+
+                    <div id="tab-hero" class="tab-content active">
+                        <div class="image-links">
+                            <a href="https://unsplash.com/photos/TD4DBagg2wE" target="_blank" class="image-link">
+                                <span class="img-icon">📷</span> Grains de café en gros plan
+                            </a>
+                            <a href="https://unsplash.com/photos/6VhPY27jdps" target="_blank" class="image-link">
+                                <span class="img-icon">📷</span> Tasse de café fumante
+                            </a>
+                            <a href="https://unsplash.com/photos/Cq4C8fhOtT4" target="_blank" class="image-link">
+                                <span class="img-icon">📷</span> Torréfacteur en action
+                            </a>
+                        </div>
+                    </div>
+
+                    <div id="tab-savoir" class="tab-content">
+                        <div class="image-links">
+                            <a href="https://unsplash.com/photos/fdlZBWIP0aM" target="_blank" class="image-link">
+                                <span class="img-icon">📷</span> Artisan torréfacteur au travail
+                            </a>
+                            <a href="https://unsplash.com/photos/1FxMET2U5dU" target="_blank" class="image-link">
+                                <span class="img-icon">📷</span> Vieux moulin rustique
+                            </a>
+                            <a href="https://unsplash.com/photos/bKvmfHFAglY" target="_blank" class="image-link">
+                                <span class="img-icon">📷</span> Mains triant des grains
+                            </a>
+                        </div>
+                    </div>
+
+                    <div id="tab-cafes" class="tab-content">
+                        <div class="image-links">
+                            <a href="https://unsplash.com/photos/zUNs99PGDg0" target="_blank" class="image-link">
+                                <span class="img-icon">📷</span> Plantation de café
+                            </a>
+                            <a href="https://unsplash.com/photos/N3bo4mkPNEY" target="_blank" class="image-link">
+                                <span class="img-icon">📷</span> Cerises de café sur branche
+                            </a>
+                            <a href="https://unsplash.com/photos/Lcej-VNqSIw" target="_blank" class="image-link">
+                                <span class="img-icon">📷</span> Sacs de café en jute
+                            </a>
+                        </div>
+                    </div>
+
+                    <div id="tab-boutique" class="tab-content">
+                        <div class="image-links">
+                            <a href="https://unsplash.com/photos/zDXgPiX9yf4" target="_blank" class="image-link">
+                                <span class="img-icon">📷</span> Intérieur coffee shop
+                            </a>
+                            <a href="https://unsplash.com/photos/1aJbHl9dVeI" target="_blank" class="image-link">
+                                <span class="img-icon">📷</span> Comptoir espresso
+                            </a>
+                            <a href="https://unsplash.com/photos/N8GdKC4Rcvs" target="_blank" class="image-link">
+                                <span class="img-icon">📷</span> Étagères café
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 1rem;">
+                    <h3><span class="icon">🤖</span> Prompts IA (optionnel)</h3>
+                    <p style="color: var(--torrefaction); margin-bottom: 1rem; font-size: 0.9rem;">Pour générer des
+                        images personnalisées avec Midjourney, DALL-E, etc.</p>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <h4>🏠 Hero / Accueil</h4>
+                            <svg class="chevron" width="20" height="20" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="6,9 12,15 18,9" />
+                            </svg>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <div class="prompt-block">
+                                    <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                                    Interior of a French artisan coffee roastery, vintage copper Probat roaster, golden
+                                    morning light, burlap coffee bags, exposed stone walls, warm brown and copper tones,
+                                    atmospheric steam, professional photography --ar 16:9
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <h4>🏪 Façade boutique</h4>
+                            <svg class="chevron" width="20" height="20" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="6,9 12,15 18,9" />
+                            </svg>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <div class="prompt-block">
+                                    <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                                    Charming storefront of French artisan coffee shop, old wooden door, large window,
+                                    hand-painted sign "Brûlerie du Vieux Moulin", flower boxes, cobblestone street, warm
+                                    afternoon light --ar 4:5
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside class="sidebar">
+            <div class="progress-card">
+                <h3>📊 Progression</h3>
+                <div class="progress-circle-container">
+                    <div class="progress-circle" id="progress-circle">
+                        <svg width="120" height="120" viewBox="0 0 120 120">
+                            <circle class="bg" cx="60" cy="60" r="52" />
+                            <circle class="progress" cx="60" cy="60" r="52" stroke-dasharray="326.73"
+                                stroke-dashoffset="326.73" id="progress-ring" />
+                        </svg>
+                        <div class="progress-percent"><span id="progress-percent">0</span>%</div>
+                    </div>
+                </div>
+                <div class="progress-stats">
+                    <div class="stat-box">
+                        <div class="stat-value" id="tasks-done">0</div>
+                        <div class="stat-label">Tâches</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="skills-done">0</div>
+                        <div class="stat-label">Compétences</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills-card">
+                <h3>🎯 Compétences validées</h3>
+
+                <div class="skill-category">
+                    <div class="skill-category-title">Interface</div>
+                    <div class="skill-list">
+                        <div class="skill-item" data-skill="connexion">
+                            <span class="skill-check"><svg width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="1,5 4,8 9,2" />
+                                </svg></span>
+                            Connexion /wp-admin
+                        </div>
+                        <div class="skill-item" data-skill="customizer">
+                            <span class="skill-check"><svg width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="1,5 4,8 9,2" />
+                                </svg></span>
+                            Apparence > Personnaliser
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-title">Contenus</div>
+                    <div class="skill-list">
+                        <div class="skill-item" data-skill="creer-page">
+                            <span class="skill-check"><svg width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="1,5 4,8 9,2" />
+                                </svg></span>
+                            Créer une page
+                        </div>
+                        <div class="skill-item" data-skill="creer-article">
+                            <span class="skill-check"><svg width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="1,5 4,8 9,2" />
+                                </svg></span>
+                            Créer un article
+                        </div>
+                        <div class="skill-item" data-skill="difference-page-article">
+                            <span class="skill-check"><svg width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="1,5 4,8 9,2" />
+                                </svg></span>
+                            Pages vs Articles
+                        </div>
+                        <div class="skill-item" data-skill="editeur-blocs">
+                            <span class="skill-check"><svg width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="1,5 4,8 9,2" />
+                                </svg></span>
+                            Éditeur (Gutenberg)
+                        </div>
+                        <div class="skill-item" data-skill="publier">
+                            <span class="skill-check"><svg width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="1,5 4,8 9,2" />
+                                </svg></span>
+                            Publier
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-title">Médias</div>
+                    <div class="skill-list">
+                        <div class="skill-item" data-skill="bibliotheque">
+                            <span class="skill-check"><svg width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="1,5 4,8 9,2" />
+                                </svg></span>
+                            Médiathèque
+                        </div>
+                        <div class="skill-item" data-skill="import-medias">
+                            <span class="skill-check"><svg width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="1,5 4,8 9,2" />
+                                </svg></span>
+                            Téléverser des médias
+                        </div>
+                        <div class="skill-item" data-skill="inserer-image">
+                            <span class="skill-check"><svg width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="1,5 4,8 9,2" />
+                                </svg></span>
+                            Ajouter un bloc Image
+                        </div>
+                        <div class="skill-item" data-skill="texte-alternatif">
+                            <span class="skill-check"><svg width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="1,5 4,8 9,2" />
+                                </svg></span>
+                            Texte alternatif (alt)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-title">Apparence</div>
+                    <div class="skill-list">
+                        <div class="skill-item" data-skill="themes">
+                            <span class="skill-check"><svg width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="1,5 4,8 9,2" />
+                                </svg></span>
+                            Thèmes WordPress
+                        </div>
+                        <div class="skill-item" data-skill="logo">
+                            <span class="skill-check"><svg width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="1,5 4,8 9,2" />
+                                </svg></span>
+                            Logo du site
+                        </div>
+                        <div class="skill-item" data-skill="favicon">
+                            <span class="skill-check"><svg width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="1,5 4,8 9,2" />
+                                </svg></span>
+                            Icône du site
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-title">Navigation</div>
+                    <div class="skill-list">
+                        <div class="skill-item" data-skill="creer-menu">
+                            <span class="skill-check"><svg width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="1,5 4,8 9,2" />
+                                </svg></span>
+                            Créer un menu
+                        </div>
+                        <div class="skill-item" data-skill="ajouter-pages-menu">
+                            <span class="skill-check"><svg width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="1,5 4,8 9,2" />
+                                </svg></span>
+                            Ajouter des éléments au menu
+                        </div>
+                        <div class="skill-item" data-skill="reorganiser-menu">
+                            <span class="skill-check"><svg width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="1,5 4,8 9,2" />
+                                </svg></span>
+                            Structure du menu
+                        </div>
+                        <div class="skill-item" data-skill="assigner-menu">
+                            <span class="skill-check"><svg width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="1,5 4,8 9,2" />
+                                </svg></span>
+                            Emplacements de menus
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-title">Réglages</div>
+                    <div class="skill-list">
+                        <div class="skill-item" data-skill="reglages-generaux">
+                            <span class="skill-check"><svg width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="1,5 4,8 9,2" />
+                                </svg></span>
+                            Réglages généraux
+                        </div>
+                        <div class="skill-item" data-skill="permaliens">
+                            <span class="skill-check"><svg width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="1,5 4,8 9,2" />
+                                </svg></span>
+                            Réglages des permaliens
+                        </div>
+                        <div class="skill-item" data-skill="page-accueil-statique">
+                            <span class="skill-check"><svg width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="1,5 4,8 9,2" />
+                                </svg></span>
+                            Réglages de la page d'accueil
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-title">Extensions</div>
+                    <div class="skill-list">
+                        <div class="skill-item" data-skill="installer-extension">
+                            <span class="skill-check"><svg width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="1,5 4,8 9,2" />
+                                </svg></span>
+                            Installer une extension (Plugins)
+                        </div>
+                        <div class="skill-item" data-skill="activer-extension">
+                            <span class="skill-check"><svg width="10" height="10" fill="none" stroke="currentColor"
+                                    stroke-width="3">
+                                    <polyline points="1,5 4,8 9,2" />
+                                </svg></span>
+                            Activer & Configurer
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <p>TP WordPress — Formation création de sites web • 2025</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
