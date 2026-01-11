@@ -6,61 +6,710 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aide : Éditeur de blocs - TP WordPress</title>
     <link rel="stylesheet" href="aide.css">
+    <style>
+        /* Styles spécifiques à cette page - à intégrer dans aide.css si souhaité */
+
+        .toc {
+            background: var(--blanc-casse, #FEFDFB);
+            border: 1px solid var(--kraft, #D4C4A8);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .toc h2 {
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            color: var(--espresso, #2C1810);
+        }
+
+        .toc ol {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+
+        .toc li {
+            margin-bottom: 0.35rem;
+        }
+
+        .toc a {
+            color: var(--torrefaction, #6B4423);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .toc a:hover {
+            color: var(--cuivre, #B87333);
+            text-decoration: underline;
+        }
+
+        /* Contexte TP */
+        .tp-context {
+            background: linear-gradient(135deg, var(--creme, #F5F0E8), var(--kraft, #D4C4A8));
+            border-left: 4px solid var(--cuivre, #B87333);
+            padding: 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 2rem;
+        }
+
+        .tp-context h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--cuivre, #B87333);
+            margin-bottom: 0.5rem;
+        }
+
+        .tp-context p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .tp-context ul {
+            margin: 0.5rem 0 0 1.25rem;
+            font-size: 0.9rem;
+        }
+
+        /* Blocs essentiels - grille de cards */
+        .blocks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .block-card {
+            background: var(--blanc-casse, #FEFDFB);
+            border: 1px solid var(--kraft, #D4C4A8);
+            border-radius: 8px;
+            padding: 1.25rem;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .block-card:hover {
+            border-color: var(--cuivre, #B87333);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(44, 24, 16, 0.1);
+        }
+
+        .block-card .block-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .block-card h4 {
+            font-size: 1rem;
+            color: var(--espresso, #2C1810);
+            margin-bottom: 0.25rem;
+        }
+
+        .block-card .shortcut {
+            font-family: monospace;
+            font-size: 0.8rem;
+            background: var(--creme, #F5F0E8);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            color: var(--torrefaction, #6B4423);
+        }
+
+        .block-card p {
+            font-size: 0.85rem;
+            color: var(--torrefaction, #6B4423);
+            margin-top: 0.5rem;
+        }
+
+        /* Capture d'écran / illustration placeholder */
+        .screenshot {
+            background: var(--creme, #F5F0E8);
+            border: 2px dashed var(--kraft, #D4C4A8);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            margin: 1rem 0;
+            color: var(--torrefaction, #6B4423);
+        }
+
+        .screenshot img {
+            max-width: 100%;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .screenshot .placeholder {
+            font-style: italic;
+            opacity: 0.7;
+        }
+
+        .screenshot figcaption {
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+            color: var(--torrefaction, #6B4423);
+        }
+
+        /* Exercices pratiques */
+        .exercise {
+            background: var(--blanc-casse, #FEFDFB);
+            border: 2px solid var(--cuivre, #B87333);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .exercise h4 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--cuivre, #B87333);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .exercise ol {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+
+        .exercise li {
+            margin-bottom: 0.5rem;
+        }
+
+        .exercise .expected-result {
+            background: var(--success-light, rgba(45, 90, 39, 0.08));
+            border-left: 3px solid var(--success, #2d5a27);
+            padding: 0.75rem 1rem;
+            margin-top: 1rem;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.9rem;
+        }
+
+        .exercise .expected-result strong {
+            color: var(--success, #2d5a27);
+        }
+
+        /* Erreurs courantes */
+        .mistakes {
+            background: #fef3f3;
+            border: 1px solid #f5c6c6;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .mistakes h3 {
+            color: #c0392b;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .mistake-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #f5c6c6;
+        }
+
+        .mistake-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .mistake-item .wrong {
+            flex: 1;
+            background: #fdeaea;
+            padding: 0.75rem;
+            border-radius: 6px;
+        }
+
+        .mistake-item .right {
+            flex: 1;
+            background: var(--success-light, rgba(45, 90, 39, 0.08));
+            padding: 0.75rem;
+            border-radius: 6px;
+        }
+
+        .mistake-item .label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.35rem;
+        }
+
+        .mistake-item .wrong .label {
+            color: #c0392b;
+        }
+
+        .mistake-item .right .label {
+            color: var(--success, #2d5a27);
+        }
+
+        /* Keyboard shortcuts */
+        .shortcuts-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+        }
+
+        .shortcuts-table th,
+        .shortcuts-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--kraft, #D4C4A8);
+        }
+
+        .shortcuts-table th {
+            background: var(--creme, #F5F0E8);
+            font-weight: 700;
+            color: var(--espresso, #2C1810);
+        }
+
+        .shortcuts-table kbd {
+            background: var(--espresso, #2C1810);
+            color: var(--blanc-casse, #FEFDFB);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+
+        /* Video embed */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            margin: 1rem 0;
+            background: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Section anchor links */
+        h2[id] {
+            scroll-margin-top: 2rem;
+        }
+
+        h2[id]:hover .anchor-link {
+            opacity: 1;
+        }
+
+        .anchor-link {
+            opacity: 0;
+            margin-left: 0.5rem;
+            color: var(--kraft, #D4C4A8);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .anchor-link:hover {
+            color: var(--cuivre, #B87333);
+        }
+
+        /* Navigation entre pages d'aide */
+        .help-nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--kraft, #D4C4A8);
+        }
+
+        .help-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--blanc-casse, #FEFDFB);
+            border: 1px solid var(--kraft, #D4C4A8);
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--torrefaction, #6B4423);
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .help-nav a:hover {
+            border-color: var(--cuivre, #B87333);
+            color: var(--espresso, #2C1810);
+        }
+
+        .help-nav .next {
+            margin-left: auto;
+        }
+    </style>
 </head>
 
 <body>
     <a href="../index.html" class="back-link">← Retour au TP</a>
-    <h1>L'Éditeur de blocs (Gutenberg)</h1>
-    <p>WordPress utilise un éditeur moderne basé sur des "blocs". Chaque élément de votre contenu (paragraphe, image,
-        titre) est un bloc indépendant que vous pouvez manipuler visuellement.</p>
 
-    <h2>1. Les bases du fonctionnement</h2>
+    <h1>L'Éditeur de blocs (Gutenberg)</h1>
+
+    <p>WordPress utilise un éditeur moderne basé sur des <strong>"blocs"</strong>. Chaque élément de votre contenu
+        (paragraphe, image, titre) est un bloc indépendant que vous pouvez manipuler visuellement, comme des briques
+        Lego.</p>
+
+    <!-- Contexte TP -->
+    <div class="tp-context">
+        <h3>☕ Dans le TP Brûlerie</h3>
+        <p>Vous utiliserez l'éditeur de blocs pour créer les 6 pages du site. Compétences concernées :</p>
+        <ul>
+            <li>Créer la page <strong>Accueil</strong> avec texte d'introduction + image hero</li>
+            <li>Créer la page <strong>Nos cafés</strong> avec les 4 fiches produits</li>
+            <li>Créer la page <strong>La boutique</strong> avec horaires et adresse</li>
+        </ul>
+    </div>
+
+    <!-- Sommaire -->
+    <nav class="toc">
+        <h2>📑 Sur cette page</h2>
+        <ol>
+            <li><a href="#blocs-essentiels">Les blocs essentiels pour le TP</a></li>
+            <li><a href="#bases">Les bases du fonctionnement</a></li>
+            <li><a href="#interface">Comprendre l'interface</a></li>
+            <li><a href="#exercice">Exercice pratique</a></li>
+            <li><a href="#erreurs">Erreurs courantes à éviter</a></li>
+            <li><a href="#raccourcis">Raccourcis clavier</a></li>
+            <li><a href="#avance">Techniques avancées</a></li>
+            <li><a href="#ressources">Ressources complémentaires</a></li>
+        </ol>
+    </nav>
+
+    <!-- Section 1: Blocs essentiels -->
+    <h2 id="blocs-essentiels">1. Les blocs essentiels pour le TP</h2>
+    <p>Voici les blocs que vous utiliserez le plus souvent pour créer le site de la Brûlerie :</p>
+
+    <div class="blocks-grid">
+        <div class="block-card">
+            <div class="block-icon">📝</div>
+            <h4>Paragraphe</h4>
+            <span class="shortcut">/paragraphe</span>
+            <p>Bloc par défaut pour le texte. Créé automatiquement en tapant.</p>
+        </div>
+        <div class="block-card">
+            <div class="block-icon">🔤</div>
+            <h4>Titre</h4>
+            <span class="shortcut">/titre</span>
+            <p>H1 à H6 pour structurer vos pages.</p>
+        </div>
+        <div class="block-card">
+            <div class="block-icon">🖼️</div>
+            <h4>Image</h4>
+            <span class="shortcut">/image</span>
+            <p>Photos des cafés, de la boutique, etc.</p>
+        </div>
+        <div class="block-card">
+            <div class="block-icon">📋</div>
+            <h4>Liste</h4>
+            <span class="shortcut">/liste</span>
+            <p>Pour les horaires, les caractéristiques des cafés.</p>
+        </div>
+        <div class="block-card">
+            <div class="block-icon">📊</div>
+            <h4>Colonnes</h4>
+            <span class="shortcut">/colonnes</span>
+            <p>Mettre du contenu côte à côte (ex: image + texte).</p>
+        </div>
+        <div class="block-card">
+            <div class="block-icon">📦</div>
+            <h4>Groupe</h4>
+            <span class="shortcut">/groupe</span>
+            <p>Regrouper des blocs pour leur appliquer un style commun.</p>
+        </div>
+    </div>
+
+    <!-- Section 2: Bases -->
+    <h2 id="bases">2. Les bases du fonctionnement</h2>
+
     <div class="step">
         <span class="step-number">1</span>
-        <strong>Ajouter un bloc :</strong> Cliquez sur le bouton <strong>+</strong> en haut à gauche ou tapez
-        directement <code>/</code> suivi du nom du bloc dans un paragraphe (ex: <code>/image</code>).
+        <div>
+            <strong>Ajouter un bloc</strong>
+            <p>Trois méthodes possibles :</p>
+            <ul>
+                <li>Cliquez sur le bouton <strong>+</strong> bleu en haut à gauche (Inséreur)</li>
+                <li>Tapez <code>/</code> dans un paragraphe vide suivi du nom du bloc (ex: <code>/image</code>)</li>
+                <li>Survolez entre deux blocs → un <strong>+</strong> apparaît</li>
+            </ul>
+        </div>
     </div>
+
     <div class="step">
         <span class="step-number">2</span>
-        <strong>Configurer un bloc :</strong> Une barre d'outils flottante apparaît au-dessus du bloc pour les réglages
-        rapides. Pour les réglages avancés (couleurs, dimensions), utilisez la colonne de droite.
+        <div>
+            <strong>Sélectionner et déplacer un bloc</strong>
+            <p>Cliquez sur un bloc pour le sélectionner. Utilisez :</p>
+            <ul>
+                <li>Les <strong>flèches ↑↓</strong> dans la barre d'outils pour monter/descendre</li>
+                <li>Les <strong>six points ⋮⋮</strong> pour glisser-déposer</li>
+            </ul>
+        </div>
     </div>
 
-    <h2>2. Conseils d'experts pour Gutenberg</h2>
     <div class="step">
-        <p><strong>La Vue en Liste :</strong> Cliquez sur l'icône "trois traits superposés" en haut à gauche. C'est
-            l'outil le plus utile pour naviguer dans une mise en page complexe et imbriquer vos blocs correctement.</p>
-    </div>
-    <div class="step">
-        <p><strong>Les Compositions (Patterns) :</strong> Au lieu de construire tout de zéro, utilisez des compositions
-            prêtes à l'emploi (bouton <strong>+</strong> > onglet <strong>Compositions</strong>).</p>
+        <span class="step-number">3</span>
+        <div>
+            <strong>Modifier le contenu</strong>
+            <p>Double-cliquez sur un bloc pour éditer son contenu. La barre d'outils contextuelle apparaît avec les
+                options de mise en forme (gras, italique, lien...).</p>
+        </div>
     </div>
 
-    <h2>3. Ressources et Vidéos</h2>
+    <!-- Section 3: Interface -->
+    <h2 id="interface">3. Comprendre l'interface</h2>
+
+    <figure class="screenshot">
+        <!-- Remplacer par une vraie capture d'écran -->
+        <p class="placeholder">📷 Capture d'écran annotée de l'interface Gutenberg</p>
+        <figcaption>L'interface de l'éditeur de blocs avec ses zones principales</figcaption>
+    </figure>
+
     <div class="step">
-        <p><strong>📺 Tutoriels Vidéos :</strong></p>
-        <ul>
-            <li><a href="https://www.youtube.com/watch?v=fZbe4JgCuPg" target="_blank">Introduction aux blocs (5 min)</a>
-            </li>
-            <li><a href="https://www.youtube.com/watch?v=KwqZrZHRwb0" target="_blank">Maîtriser la mise en page
-                    (Colonnes et Groupes)</a></li>
-        </ul>
+        <span class="step-number">A</span>
+        <div>
+            <strong>Barre d'outils supérieure</strong>
+            <p>Contient l'inséreur de blocs (+), la vue en liste, les boutons Annuler/Rétablir, et le bouton
+                Publier/Mettre à jour.</p>
+        </div>
     </div>
+
     <div class="step">
-        <p><strong>📚 Documentation Officielle :</strong></p>
-        <ul>
-            <li><a href="https://fr.wordpress.org/support/article/wordpress-editor/" target="_blank">Le guide complet de
-                    l'éditeur de blocs</a></li>
-            <li><a href="https://fr.wordpress.org/support/category/utilisation-de-base/" target="_blank">Utilisation de
-                    base de
-                    WordPress</a></li>
-        </ul>
+        <span class="step-number">B</span>
+        <div>
+            <strong>Zone de contenu (centre)</strong>
+            <p>C'est là que vous construisez votre page, bloc par bloc. Ce que vous voyez ressemble au rendu final.</p>
+        </div>
+    </div>
+
+    <div class="step">
+        <span class="step-number">C</span>
+        <div>
+            <strong>Panneau de réglages (droite)</strong>
+            <p>Cliquez sur l'icône ⚙️ pour l'afficher. Deux onglets :</p>
+            <ul>
+                <li><strong>Article/Page :</strong> Réglages généraux (visibilité, image mise en avant...)</li>
+                <li><strong>Bloc :</strong> Réglages du bloc sélectionné (couleurs, typographie, dimensions)</li>
+            </ul>
+        </div>
     </div>
 
     <div class="tip">
-        <strong>💡 Raccourci indispensable :</strong> Appuyez sur <code>Entrée</code> pour créer un nouveau bloc
-        Paragraphe, et utilisez <code>Maj + Entrée</code> pour faire un simple saut de ligne sans changer de bloc.
+        <strong>💡 Astuce :</strong> La <strong>Vue en Liste</strong> (icône ≡ en haut à gauche) est indispensable pour
+        naviguer dans une page complexe avec des colonnes ou des groupes imbriqués.
     </div>
+
+    <!-- Section 4: Exercice pratique -->
+    <h2 id="exercice">4. Exercice pratique</h2>
+
+    <div class="exercise">
+        <h4>🎯 Mini-exercice : Créer une section "Café du mois"</h4>
+        <p>Entraînez-vous avant de créer les vraies pages du TP :</p>
+        <ol>
+            <li>Créez une nouvelle page brouillon nommée "Test Gutenberg"</li>
+            <li>Ajoutez un bloc <strong>Titre</strong> (H2) : "Notre café du mois"</li>
+            <li>Ajoutez un bloc <strong>Colonnes</strong> (2 colonnes, 50/50)</li>
+            <li>Dans la colonne gauche, insérez un bloc <strong>Image</strong></li>
+            <li>Dans la colonne droite, ajoutez :
+                <ul>
+                    <li>Un bloc <strong>Titre</strong> (H3) : "Éthiopie Yirgacheffe"</li>
+                    <li>Un bloc <strong>Paragraphe</strong> avec une description</li>
+                    <li>Un bloc <strong>Liste</strong> avec les notes aromatiques</li>
+                </ul>
+            </li>
+            <li>Sélectionnez le bloc Colonnes et dans le panneau de droite, ajoutez une couleur de fond crème</li>
+        </ol>
+        <div class="expected-result">
+            <strong>✓ Résultat attendu :</strong> Une section avec l'image à gauche et les informations du café à
+            droite, le tout sur fond coloré.
+        </div>
+    </div>
+
+    <!-- Section 5: Erreurs courantes -->
+    <h2 id="erreurs">5. Erreurs courantes à éviter</h2>
+
+    <div class="mistakes">
+        <h3>⚠️ Pièges fréquents</h3>
+
+        <div class="mistake-item">
+            <div class="wrong">
+                <div class="label">❌ À éviter</div>
+                <p>Utiliser <code>Entrée</code> pour faire un saut de ligne dans un paragraphe</p>
+            </div>
+            <div class="right">
+                <div class="label">✓ Bonne pratique</div>
+                <p>Utiliser <code>Maj + Entrée</code> pour un saut de ligne, ou <code>Entrée</code> pour un nouveau bloc
+                </p>
+            </div>
+        </div>
+
+        <div class="mistake-item">
+            <div class="wrong">
+                <div class="label">❌ À éviter</div>
+                <p>Mettre plusieurs espaces ou lignes vides pour créer de l'espacement</p>
+            </div>
+            <div class="right">
+                <div class="label">✓ Bonne pratique</div>
+                <p>Utiliser le bloc <strong>Espacement</strong> ou les marges dans les réglages du bloc</p>
+            </div>
+        </div>
+
+        <div class="mistake-item">
+            <div class="wrong">
+                <div class="label">❌ À éviter</div>
+                <p>Oublier de remplir le texte alternatif des images</p>
+            </div>
+            <div class="right">
+                <div class="label">✓ Bonne pratique</div>
+                <p>Toujours renseigner le champ "Texte alternatif" pour l'accessibilité et le SEO</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 6: Raccourcis clavier -->
+    <h2 id="raccourcis">6. Raccourcis clavier utiles</h2>
+
+    <table class="shortcuts-table">
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th>Windows</th>
+                <th>Mac</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Nouveau bloc Paragraphe</td>
+                <td><kbd>Entrée</kbd></td>
+                <td><kbd>Entrée</kbd></td>
+            </tr>
+            <tr>
+                <td>Saut de ligne (sans nouveau bloc)</td>
+                <td><kbd>Maj</kbd> + <kbd>Entrée</kbd></td>
+                <td><kbd>Maj</kbd> + <kbd>Entrée</kbd></td>
+            </tr>
+            <tr>
+                <td>Insérer un bloc par son nom</td>
+                <td><kbd>/</kbd> + nom</td>
+                <td><kbd>/</kbd> + nom</td>
+            </tr>
+            <tr>
+                <td>Dupliquer un bloc</td>
+                <td><kbd>Ctrl</kbd> + <kbd>Maj</kbd> + <kbd>D</kbd></td>
+                <td><kbd>⌘</kbd> + <kbd>Maj</kbd> + <kbd>D</kbd></td>
+            </tr>
+            <tr>
+                <td>Supprimer un bloc</td>
+                <td><kbd>Maj</kbd> + <kbd>Alt</kbd> + <kbd>Z</kbd></td>
+                <td><kbd>⌃</kbd> + <kbd>⌥</kbd> + <kbd>Z</kbd></td>
+            </tr>
+            <tr>
+                <td>Annuler</td>
+                <td><kbd>Ctrl</kbd> + <kbd>Z</kbd></td>
+                <td><kbd>⌘</kbd> + <kbd>Z</kbd></td>
+            </tr>
+            <tr>
+                <td>Enregistrer le brouillon</td>
+                <td><kbd>Ctrl</kbd> + <kbd>S</kbd></td>
+                <td><kbd>⌘</kbd> + <kbd>S</kbd></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Section 7: Techniques avancées -->
+    <h2 id="avance">7. Techniques avancées</h2>
+
+    <div class="step">
+        <span class="step-number">→</span>
+        <div>
+            <strong>Transformer un bloc</strong>
+            <p>Sélectionnez un bloc et cliquez sur l'icône du bloc (à gauche de la barre d'outils) pour le transformer.
+                Par exemple : transformer une liste en paragraphe, ou un paragraphe en titre.</p>
+        </div>
+    </div>
+
+    <div class="step">
+        <span class="step-number">→</span>
+        <div>
+            <strong>Créer un groupe avec style</strong>
+            <p>Sélectionnez plusieurs blocs (Maj + clic), puis cliquez sur ⋮ > "Grouper". Vous pouvez ensuite appliquer
+                une couleur de fond ou des marges à tout le groupe.</p>
+        </div>
+    </div>
+
+    <div class="step">
+        <span class="step-number">→</span>
+        <div>
+            <strong>Utiliser les Compositions (Patterns)</strong>
+            <p>Cliquez sur <strong>+</strong> puis l'onglet <strong>Compositions</strong>. Ce sont des mises en page
+                pré-conçues que vous pouvez insérer et personnaliser. Idéal pour gagner du temps !</p>
+        </div>
+    </div>
+
+    <div class="step">
+        <span class="step-number">→</span>
+        <div>
+            <strong>Blocs réutilisables</strong>
+            <p>Créez un bloc, cliquez sur ⋮ > "Créer un bloc réutilisable". Pratique pour un élément que vous utilisez
+                sur plusieurs pages (ex: bandeau de contact).</p>
+        </div>
+    </div>
+
+    <!-- Section 8: Ressources -->
+    <h2 id="ressources">8. Ressources complémentaires</h2>
+
+    <div class="step">
+        <div>
+            <strong>📖 Guides écrits</strong>
+            <ul>
+                <li><a href="https://kinsta.com/fr/blog/editeur-wordpress-gutenberg/" target="_blank"
+                        rel="noopener">Guide complet sur Gutenberg (Kinsta)</a> — Tutoriel très illustré</li>
+                <li><a href="https://fr.wordpress.org/support/article/wordpress-editor/" target="_blank"
+                        rel="noopener">Documentation officielle WordPress</a> — Référence technique</li>
+                <li><a href="https://developer.wordpress.org/block-editor/" target="_blank" rel="noopener">Block Editor
+                        Handbook</a> — Pour aller plus loin (en anglais)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="step">
+        <div>
+            <strong>📺 Tutoriels vidéo</strong>
+            <ul>
+                <li><a href="https://www.youtube.com/watch?v=fZbe4JgCuPg" target="_blank" rel="noopener">Introduction
+                        aux blocs WordPress (5 min)</a></li>
+                <li><a href="https://www.youtube.com/watch?v=KwqZrZHRwb0" target="_blank" rel="noopener">Maîtriser
+                        Colonnes et Groupes</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="tip">
+        <strong>💡 Conseil final :</strong> N'hésitez pas à expérimenter ! Créez une page brouillon pour tester les
+        blocs sans risque. Vous pouvez toujours annuler avec <kbd>Ctrl</kbd>+<kbd>Z</kbd> ou supprimer la page de test.
+    </div>
+
+    <!-- Navigation entre pages d'aide -->
+    <nav class="help-nav">
+        <a href="creer-page.html" class="prev">
+            ← Créer une page
+        </a>
+        <a href="inserer-image.html" class="next">
+            Insérer une image →
+        </a>
+    </nav>
 </body>
 
 </html>
