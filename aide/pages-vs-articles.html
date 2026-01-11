@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aide : Pages vs Articles - TP WordPress</title>
+    <link rel="stylesheet" href="aide.css">
+    <style>
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: var(--blanc-casse, #FEFDFB);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--kraft, #D4C4A8);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--kraft, #D4C4A8);
+        }
+
+        .comparison-table th {
+            background: var(--creme, #F5F0E8);
+            color: var(--espresso, #2C1810);
+            font-weight: 700;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+        }
+
+        .example-box {
+            background: var(--creme, #F5F0E8);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid var(--cuivre, #B87333);
+        }
+
+        .example-box h4 {
+            margin-top: 0;
+            color: var(--espresso, #2C1810);
+        }
+    </style>
+</head>
+
+<body>
+    <a href="../index.html" class="back-link">← Retour au TP</a>
+    <h1>Pages vs Articles : Quelle différence ?</h1>
+
+    <p>Dans WordPress, il existe deux types de contenus principaux. Bien qu'ils utilisent le même éditeur, leur rôle et
+        leur comportement sont très différents.</p>
+
+    <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Caractéristique</th>
+                    <th>📄 Pages</th>
+                    <th>✍️ Articles</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Nature</strong></td>
+                    <td>Contenu statique et intemporel.</td>
+                    <td>Contenu dynamique et chronologique.</td>
+                </tr>
+                <tr>
+                    <td><strong>Organisation</strong></td>
+                    <td>Hiérarchique (Parent/Enfant).</td>
+                    <td>Catégories et Étiquettes (Tags).</td>
+                </tr>
+                <tr>
+                    <td><strong>Date</strong></td>
+                    <td>La date n'est généralement pas affichée.</td>
+                    <td>La date est importante (flux RSS).</td>
+                </tr>
+                <tr>
+                    <td><strong>Utilisation</strong></td>
+                    <td>Accueil, Contact, À propos...</td>
+                    <td>Actualités, Blog, Recettes...</td>
+                </tr>
+                <tr>
+                    <td><strong>Menu</strong></td>
+                    <td>Souvent ajoutées manuellement au menu.</td>
+                    <td>S'affichent automatiquement sur la page "Blog".</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>1. Les Pages 📄</h2>
+    <p>Les pages sont destinées à du contenu qui ne change pas souvent. Elles forment la structure "fixe" de votre site
+        web.</p>
+    <div class="example-box">
+        <h4>💡 Exemples pour la Brûlerie :</h4>
+        <ul>
+            <li>La page <strong>Accueil</strong></li>
+            <li>La page <strong>Nos Cafés</strong> (liste des produits)</li>
+            <li>La page <strong>Contact</strong></li>
+        </ul>
+    </div>
+    <p>Elles peuvent être organisées de manière hiérarchique. Par exemple, vous pourriez avoir une page "Nos services"
+        avec des sous-pages "Torréfaction" et "Ateliers dégustation".</p>
+
+    <h2>2. Les Articles ✍️</h2>
+    <p>Les articles (ou "Posts") sont les entrées de votre blog ou de votre section actualités. Ils sont classés du plus
+        récent au plus ancien.</p>
+    <div class="example-box">
+        <h4>💡 Exemples pour la Brûlerie :</h4>
+        <ul>
+            <li>"Découvrez notre nouveau café du Guatemala"</li>
+            <li>"5 conseils pour bien choisir sa mouture"</li>
+            <li>"Retour sur notre dernier atelier de dégustation"</li>
+        </ul>
+    </div>
+    <p>Les articles utilisent des <strong>catégories</strong> et des <strong>étiquettes</strong> pour permettre aux
+        visiteurs de filtrer le contenu par thématique.</p>
+
+    <div class="tip">
+        <strong>🤔 Lequel choisir ?</strong> Demandez-vous : "Ce contenu sera-t-il encore d'actualité dans un an ?"
+        <ul>
+            <li>Si <strong>OUI</strong> → Créez une <strong>Page</strong>.</li>
+            <li>Si <strong>NON</strong> (ou si c'est une actualité) → Créez un <strong>Article</strong>.</li>
+        </ul>
+    </div>
+
+    <div class="help-nav"
+        style="display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--kraft, #D4C4A8);">
+        <a href="editeur.html"
+            style="text-decoration: none; color: var(--torrefaction, #6B4423); display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.25rem; background: var(--blanc-casse, #FEFDFB); border: 1px solid var(--kraft, #D4C4A8); border-radius: 6px;">
+            ← L'éditeur de blocs
+        </a>
+    </div>
+</body>
+
+</html>
