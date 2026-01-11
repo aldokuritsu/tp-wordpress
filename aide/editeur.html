@@ -318,6 +318,131 @@
             color: var(--cuivre, #B87333);
         }
 
+        /* Zones de l'interface (colorées) */
+        .interface-zones {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+        }
+
+        .zone-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--blanc-casse, #FEFDFB);
+            border-radius: 6px;
+            border: 1px solid var(--kraft, #D4C4A8);
+        }
+
+        .zone-item .zone-color {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .zone-item.zone-purple .zone-color {
+            background: #9b59b6;
+        }
+
+        .zone-item.zone-green .zone-color {
+            background: #27ae60;
+        }
+
+        .zone-item.zone-yellow .zone-color {
+            background: #f1c40f;
+        }
+
+        .zone-item.zone-blue .zone-color {
+            background: #3498db;
+        }
+
+        .zone-item.zone-red .zone-color {
+            background: #e74c3c;
+        }
+
+        .zone-item strong {
+            display: block;
+            color: var(--espresso, #2C1810);
+            margin-bottom: 0.25rem;
+        }
+
+        .zone-item p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--torrefaction, #6B4423);
+        }
+
+        /* Éléments numérotés de l'interface */
+        .numbered-elements {
+            margin: 1.5rem 0;
+        }
+
+        .element-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .element-group h4 {
+            font-size: 1rem;
+            color: var(--espresso, #2C1810);
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--cuivre, #B87333);
+        }
+
+        .element-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            background: var(--creme, #F5F0E8);
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .element-item:hover {
+            background: var(--kraft, #D4C4A8);
+        }
+
+        .element-number {
+            width: 28px;
+            height: 28px;
+            background: #c0392b;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .element-item strong {
+            display: block;
+            color: var(--espresso, #2C1810);
+            margin-bottom: 0.15rem;
+        }
+
+        .element-item p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: var(--torrefaction, #6B4423);
+        }
+
+        .element-item kbd {
+            background: var(--espresso, #2C1810);
+            color: var(--blanc-casse, #FEFDFB);
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.8rem;
+        }
+
         /* Navigation entre pages d'aide */
         .help-nav {
             display: flex;
@@ -471,44 +596,185 @@
     <!-- Section 3: Interface -->
     <h2 id="interface">3. Comprendre l'interface</h2>
 
+    <p>L'interface de l'éditeur comporte plusieurs zones identifiées par des couleurs sur la capture ci-dessous :</p>
+
     <figure class="screenshot">
-        <!-- Remplacer par une vraie capture d'écran -->
-        <p class="placeholder">📷 Capture d'écran annotée de l'interface Gutenberg</p>
-        <figcaption>L'interface de l'éditeur de blocs avec ses zones principales</figcaption>
+        <img src="/assets/img/editeur-interface.png"
+            alt="Interface de l'éditeur de blocs WordPress avec annotations numérotées">
+        <figcaption>L'interface de l'éditeur de blocs — Source : <a
+                href="https://fr.wordpress.org/support/article/wordpress-editor/" target="_blank">Documentation
+                WordPress</a></figcaption>
     </figure>
 
-    <div class="step">
-        <span class="step-number">A</span>
-        <div>
-            <strong>Barre d'outils supérieure</strong>
-            <p>Contient l'inséreur de blocs (+), la vue en liste, les boutons Annuler/Rétablir, et le bouton
-                Publier/Mettre à jour.</p>
+    <!-- Zones colorées -->
+    <h3>Les zones de l'interface</h3>
+
+    <div class="interface-zones">
+        <div class="zone-item zone-purple">
+            <span class="zone-color"></span>
+            <div>
+                <strong>Barre d'outils supérieure</strong> (violet)
+                <p>Contient tous les outils principaux : insertion de blocs, navigation, publication.</p>
+            </div>
+        </div>
+        <div class="zone-item zone-green">
+            <span class="zone-color"></span>
+            <div>
+                <strong>Vue en liste</strong> (vert)
+                <p>Affiche la structure hiérarchique de tous les blocs de votre page. Indispensable pour les mises en
+                    page complexes.</p>
+            </div>
+        </div>
+        <div class="zone-item zone-yellow">
+            <span class="zone-color"></span>
+            <div>
+                <strong>Zone d'édition</strong> (jaune)
+                <p>C'est ici que vous construisez votre page, bloc par bloc. L'affichage est proche du rendu final.</p>
+            </div>
+        </div>
+        <div class="zone-item zone-blue">
+            <span class="zone-color"></span>
+            <div>
+                <strong>Colonne des réglages</strong> (bleu)
+                <p>Affiche les options de la page/article ou du bloc sélectionné (couleurs, dimensions, etc.).</p>
+            </div>
+        </div>
+        <div class="zone-item zone-red">
+            <span class="zone-color"></span>
+            <div>
+                <strong>Fil d'Ariane</strong> (rouge)
+                <p>Montre votre position dans l'imbrication des blocs. Cliquez sur un élément pour le sélectionner
+                    rapidement.</p>
+            </div>
         </div>
     </div>
 
-    <div class="step">
-        <span class="step-number">B</span>
-        <div>
-            <strong>Zone de contenu (centre)</strong>
-            <p>C'est là que vous construisez votre page, bloc par bloc. Ce que vous voyez ressemble au rendu final.</p>
-        </div>
-    </div>
+    <!-- Éléments numérotés -->
+    <h3>Détail des outils (numéros)</h3>
 
-    <div class="step">
-        <span class="step-number">C</span>
-        <div>
-            <strong>Panneau de réglages (droite)</strong>
-            <p>Cliquez sur l'icône ⚙️ pour l'afficher. Deux onglets :</p>
-            <ul>
-                <li><strong>Article/Page :</strong> Réglages généraux (visibilité, image mise en avant...)</li>
-                <li><strong>Bloc :</strong> Réglages du bloc sélectionné (couleurs, typographie, dimensions)</li>
-            </ul>
+    <div class="numbered-elements">
+        <div class="element-group">
+            <h4>Barre d'outils supérieure</h4>
+            <div class="element-item">
+                <span class="element-number">1</span>
+                <div>
+                    <strong>Logo WordPress</strong>
+                    <p>Cliquez pour quitter l'éditeur et retourner à la liste des pages ou articles.</p>
+                </div>
+            </div>
+            <div class="element-item">
+                <span class="element-number">2</span>
+                <div>
+                    <strong>Inséreur de blocs (+)</strong>
+                    <p>Ouvre le panneau pour rechercher et insérer des blocs, compositions ou médias.</p>
+                </div>
+            </div>
+            <div class="element-item">
+                <span class="element-number">3</span>
+                <div>
+                    <strong>Outils (Modifier/Sélectionner)</strong>
+                    <p>Basculez entre le mode édition (modifier le contenu) et le mode sélection (déplacer les blocs par
+                        glisser-déposer).</p>
+                </div>
+            </div>
+            <div class="element-item">
+                <span class="element-number">4</span>
+                <div>
+                    <strong>Annuler</strong>
+                    <p>Annule la dernière modification. Raccourci : <kbd>Ctrl</kbd>+<kbd>Z</kbd></p>
+                </div>
+            </div>
+            <div class="element-item">
+                <span class="element-number">5</span>
+                <div>
+                    <strong>Rétablir</strong>
+                    <p>Rétablit une modification annulée. Raccourci : <kbd>Ctrl</kbd>+<kbd>Y</kbd></p>
+                </div>
+            </div>
+            <div class="element-item">
+                <span class="element-number">6</span>
+                <div>
+                    <strong>Vue d'ensemble du document</strong>
+                    <p>Affiche la <strong>Vue en liste</strong> (structure des blocs) et l'onglet
+                        <strong>Structure</strong> (statistiques : mots, temps de lecture, hiérarchie des titres).
+                    </p>
+                </div>
+            </div>
+            <div class="element-item">
+                <span class="element-number">7</span>
+                <div>
+                    <strong>Voir (Prévisualisation)</strong>
+                    <p>Prévisualisez votre page en mode Ordinateur, Tablette ou Mobile, ou ouvrez-la dans un nouvel
+                        onglet.</p>
+                </div>
+            </div>
+            <div class="element-item">
+                <span class="element-number">8</span>
+                <div>
+                    <strong>Voir la page (externe)</strong>
+                    <p>Ouvre la page publiée dans un nouvel onglet (disponible uniquement si la page est déjà publiée).
+                    </p>
+                </div>
+            </div>
+            <div class="element-item">
+                <span class="element-number">9</span>
+                <div>
+                    <strong>Publier / Mettre à jour</strong>
+                    <p>Publie votre brouillon ou enregistre les modifications d'une page déjà publiée.</p>
+                </div>
+            </div>
+            <div class="element-item">
+                <span class="element-number">10</span>
+                <div>
+                    <strong>Réglages (⚙️)</strong>
+                    <p>Affiche ou masque la colonne latérale des réglages (à droite).</p>
+                </div>
+            </div>
+            <div class="element-item">
+                <span class="element-number">11</span>
+                <div>
+                    <strong>Options (⋮)</strong>
+                    <p>Accès aux préférences de l'éditeur, au mode plein écran, à l'export, etc.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="element-group">
+            <h4>Colonne des réglages</h4>
+            <div class="element-item">
+                <span class="element-number">12</span>
+                <div>
+                    <strong>Onglet Page / Article</strong>
+                    <p>Réglages généraux de la publication : visibilité, URL, image mise en avant, catégories, etc.</p>
+                </div>
+            </div>
+            <div class="element-item">
+                <span class="element-number">13</span>
+                <div>
+                    <strong>Onglet Bloc</strong>
+                    <p>Réglages du bloc actuellement sélectionné : couleurs, typographie, dimensions, marges. <em>Vide
+                            si aucun bloc n'est sélectionné.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="element-group">
+            <h4>Zone d'édition</h4>
+            <div class="element-item">
+                <span class="element-number">14</span>
+                <div>
+                    <strong>Titre de la page</strong>
+                    <p>Cliquez sur "Saisissez le titre" pour donner un titre à votre page. C'est le titre H1 principal.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="tip">
-        <strong>💡 Astuce :</strong> La <strong>Vue en Liste</strong> (icône ≡ en haut à gauche) est indispensable pour
-        naviguer dans une page complexe avec des colonnes ou des groupes imbriqués.
+        <strong>💡 Astuce :</strong> La <strong>Vue en Liste</strong> (bouton 6) est indispensable pour naviguer dans
+        une page complexe avec des colonnes ou des groupes imbriqués. Elle permet de sélectionner facilement un bloc
+        parent.
     </div>
 
     <!-- Section 4: Exercice pratique -->
