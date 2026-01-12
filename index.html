@@ -574,9 +574,49 @@
                                     <a href="aide/extensions.html" class="skill-tag">Page Builder</a>
                                 </div>
                             </div>
-                        </label>
                     </div>
                 </div>
+
+                <div class="card quiz-cta-card"
+                    style="background: var(--espresso); color: var(--blanc-casse); border: none; margin-top: 2rem;">
+                    <div class="quiz-cta-inner">
+                        <div class="quiz-cta-text">
+                            <h3 style="color: var(--blanc-casse); margin-bottom: 0.5rem;">
+                                <span class="icon" style="background: rgba(255,255,255,0.1);">🎯</span>
+                                Quiz : Validez vos connaissances
+                            </h3>
+                            <p style="opacity: 0.9; font-size: 0.95rem;">
+                                Prêt pour l'examen ? Testez vos acquis sur les bases de WordPress (interface, réglages,
+                                contenus) avec notre quiz de 15 questions.
+                            </p>
+                        </div>
+                        <a href="aide/quizz.html" class="hero-cta"
+                            style="background: var(--cuivre); white-space: nowrap; animation: none;">
+                            Lancer le quiz
+                        </a>
+                    </div>
+                </div>
+                <style>
+                    .quiz-cta-inner {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        gap: 2rem;
+                    }
+
+                    @media (max-width: 600px) {
+                        .quiz-cta-inner {
+                            flex-direction: column;
+                            align-items: flex-start;
+                            gap: 1.5rem;
+                        }
+
+                        .quiz-cta-card .hero-cta {
+                            width: 100%;
+                            justify-content: center;
+                        }
+                    }
+                </style>
             </section>
 
             <div class="section-divider"></div>

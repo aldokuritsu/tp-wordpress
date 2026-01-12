@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz : Les bases de WordPress</title>
+    <link rel="stylesheet" href="aide.css">
+    <style>
+        .quiz-intro {
+            background: var(--blanc-casse);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px var(--shadow);
+            border-left: 4px solid var(--cuivre);
+        }
+
+        .quiz-intro h2 {
+            margin-top: 0;
+            color: var(--espresso);
+        }
+
+        .quiz-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .quiz-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--torrefaction);
+        }
+
+        .question-card {
+            background: var(--blanc-casse);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px var(--shadow);
+            border-left: 4px solid var(--kraft);
+            transition: border-color 0.3s ease;
+        }
+
+        .question-card.correct {
+            border-left-color: var(--success);
+            background: rgba(45, 90, 39, 0.05);
+        }
+
+        .question-card.incorrect {
+            border-left-color: #c0392b;
+            background: rgba(192, 57, 43, 0.05);
+        }
+
+        .question-number {
+            display: inline-block;
+            background: var(--espresso);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            margin-right: 0.75rem;
+        }
+
+        .question-text {
+            display: inline;
+            font-weight: bold;
+            color: var(--espresso);
+            font-size: 1.05rem;
+        }
+
+        .question-category {
+            display: inline-block;
+            background: var(--kraft);
+            color: var(--torrefaction);
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .options-list {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background: var(--creme);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+        }
+
+        .option-item:hover {
+            background: var(--kraft);
+        }
+
+        .option-item.selected {
+            border-color: var(--cuivre);
+            background: rgba(184, 115, 51, 0.1);
+        }
+
+        .option-item.correct-answer {
+            border-color: var(--success);
+            background: rgba(45, 90, 39, 0.15);
+        }
+
+        .option-item.wrong-answer {
+            border-color: #c0392b;
+            background: rgba(192, 57, 43, 0.1);
+        }
+
+        .option-item input[type="radio"] {
+            margin-right: 0.75rem;
+            accent-color: var(--cuivre);
+            width: 18px;
+            height: 18px;
+        }
+
+        .option-item label {
+            cursor: pointer;
+            flex: 1;
+            color: var(--espresso);
+        }
+
+        .feedback {
+            display: none;
+            margin-top: 1rem;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: rgba(45, 90, 39, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+        }
+
+        .feedback.incorrect {
+            background: rgba(192, 57, 43, 0.1);
+            border: 1px solid #c0392b;
+            color: #c0392b;
+        }
+
+        .submit-section {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .submit-btn {
+            background: var(--espresso);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--torrefaction);
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:disabled {
+            background: var(--kraft);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .reset-btn {
+            background: transparent;
+            color: var(--torrefaction);
+            border: 2px solid var(--torrefaction);
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-left: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .reset-btn:hover {
+            background: var(--torrefaction);
+            color: white;
+        }
+
+        .results-card {
+            display: none;
+            background: var(--blanc-casse);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px var(--shadow);
+            text-align: center;
+        }
+
+        .results-card.show {
+            display: block;
+        }
+
+        .results-score {
+            font-size: 4rem;
+            font-weight: bold;
+            color: var(--espresso);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .results-score span {
+            font-size: 1.5rem;
+            color: var(--torrefaction);
+        }
+
+        .results-message {
+            font-size: 1.2rem;
+            color: var(--torrefaction);
+            margin: 1rem 0;
+        }
+
+        .results-details {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .result-item {
+            text-align: center;
+        }
+
+        .result-item .count {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .result-item .label {
+            font-size: 0.85rem;
+            color: var(--torrefaction);
+        }
+
+        .result-item.correct .count {
+            color: var(--success);
+        }
+
+        .result-item.incorrect .count {
+            color: #c0392b;
+        }
+
+        .progress-bar-container {
+            background: var(--kraft);
+            border-radius: 10px;
+            height: 20px;
+            margin: 1.5rem auto;
+            max-width: 400px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .note {
+            background: rgba(45, 90, 39, 0.1);
+            border: 1px solid var(--success);
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .note strong {
+            color: var(--success);
+        }
+
+        .warning {
+            background: rgba(107, 68, 35, 0.1);
+            border: 1px solid var(--torrefaction);
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .warning strong {
+            color: var(--torrefaction);
+        }
+
+        @media (max-width: 600px) {
+            .quiz-stats {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .results-details {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="../index.html" class="back-link">← Retour au TP</a>
+    <h1>Quiz : Les bases de WordPress</h1>
+
+    <div class="quiz-intro">
+        <h2>🎯 Testez vos connaissances</h2>
+        <p>Ce quiz couvre les compétences essentielles abordées dans le TP WordPress. Répondez aux 15 questions puis
+            validez pour voir votre score et les corrections.</p>
+        <div class="quiz-stats">
+            <div class="quiz-stat">📝 <strong>15 questions</strong></div>
+            <div class="quiz-stat">⏱️ <strong>~10 minutes</strong></div>
+            <div class="quiz-stat">🎯 <strong>Objectif : 80%</strong></div>
+        </div>
+    </div>
+
+    <div class="results-card" id="results">
+        <h2>📊 Vos résultats</h2>
+        <div class="results-score"><span id="score-value">0</span><span>/15</span></div>
+        <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="progress-fill" style="width: 0%; background: var(--cuivre);"></div>
+        </div>
+        <div class="results-message" id="results-message"></div>
+        <div class="results-details">
+            <div class="result-item correct">
+                <div class="count" id="correct-count">0</div>
+                <div class="label">Bonnes réponses</div>
+            </div>
+            <div class="result-item incorrect">
+                <div class="count" id="incorrect-count">0</div>
+                <div class="label">À revoir</div>
+            </div>
+        </div>
+    </div>
+
+    <form id="quiz-form">
+        <!-- Question 1 -->
+        <div class="question-card" data-question="1" data-correct="b">
+            <span class="question-number">1</span>
+            <span class="question-text">Quelle URL permet d'accéder à l'administration WordPress ?</span>
+            <span class="question-category">Interface</span>
+            <div class="options-list">
+                <div class="option-item" onclick="selectOption(this, 1, 'a')">
+                    <input type="radio" name="q1" id="q1a" value="a">
+                    <label for="q1a">monsite.com/admin</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 1, 'b')">
+                    <input type="radio" name="q1" id="q1b" value="b">
+                    <label for="q1b">monsite.com/wp-admin</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 1, 'c')">
+                    <input type="radio" name="q1" id="q1c" value="c">
+                    <label for="q1c">monsite.com/dashboard</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 1, 'd')">
+                    <input type="radio" name="q1" id="q1d" value="d">
+                    <label for="q1d">monsite.com/login</label>
+                </div>
+            </div>
+            <div class="feedback" id="feedback-1">
+                <strong>Explication :</strong> L'URL standard pour accéder au tableau de bord WordPress est toujours
+                <code>/wp-admin</code> ajouté à l'adresse du site.
+            </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question-card" data-question="2" data-correct="c">
+            <span class="question-number">2</span>
+            <span class="question-text">Où peut-on modifier le titre et le slogan du site de manière universelle
+                ?</span>
+            <span class="question-category">Réglages</span>
+            <div class="options-list">
+                <div class="option-item" onclick="selectOption(this, 2, 'a')">
+                    <input type="radio" name="q2" id="q2a" value="a">
+                    <label for="q2a">Apparence > Personnaliser</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 2, 'b')">
+                    <input type="radio" name="q2" id="q2b" value="b">
+                    <label for="q2b">Apparence > Éditeur</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 2, 'c')">
+                    <input type="radio" name="q2" id="q2c" value="c">
+                    <label for="q2c">Réglages > Général</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 2, 'd')">
+                    <input type="radio" name="q2" id="q2d" value="d">
+                    <label for="q2d">Extensions > Réglages</label>
+                </div>
+            </div>
+            <div class="feedback" id="feedback-2">
+                <strong>Explication :</strong> <code>Réglages > Général</code> est la méthode universelle qui fonctionne
+                quel que soit le thème utilisé (classique ou à blocs).
+            </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question-card" data-question="3" data-correct="b">
+            <span class="question-number">3</span>
+            <span class="question-text">Quelle structure de permaliens est recommandée pour un site vitrine ?</span>
+            <span class="question-category">Réglages</span>
+            <div class="options-list">
+                <div class="option-item" onclick="selectOption(this, 3, 'a')">
+                    <input type="radio" name="q3" id="q3a" value="a">
+                    <label for="q3a">Simple (?p=123)</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 3, 'b')">
+                    <input type="radio" name="q3" id="q3b" value="b">
+                    <label for="q3b">Titre de la publication (/mon-article/)</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 3, 'c')">
+                    <input type="radio" name="q3" id="q3c" value="c">
+                    <label for="q3c">Numérique (/archives/123)</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 3, 'd')">
+                    <input type="radio" name="q3" id="q3d" value="d">
+                    <label for="q3d">Date et titre (/2025/01/mon-article/)</label>
+                </div>
+            </div>
+            <div class="feedback" id="feedback-3">
+                <strong>Explication :</strong> « Titre de la publication » génère des URLs propres et lisibles (ex:
+                /notre-histoire/), idéal pour le SEO et l'expérience utilisateur.
+            </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="question-card" data-question="4" data-correct="a">
+            <span class="question-number">4</span>
+            <span class="question-text">Quelle est la différence principale entre une page et un article WordPress
+                ?</span>
+            <span class="question-category">Contenus</span>
+            <div class="options-list">
+                <div class="option-item" onclick="selectOption(this, 4, 'a')">
+                    <input type="radio" name="q4" id="q4a" value="a">
+                    <label for="q4a">Les pages sont statiques, les articles sont chronologiques (blog)</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 4, 'b')">
+                    <input type="radio" name="q4" id="q4b" value="b">
+                    <label for="q4b">Les pages peuvent contenir des images, pas les articles</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 4, 'c')">
+                    <input type="radio" name="q4" id="q4c" value="c">
+                    <label for="q4c">Les articles sont plus longs que les pages</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 4, 'd')">
+                    <input type="radio" name="q4" id="q4d" value="d">
+                    <label for="q4d">Il n'y a aucune différence</label>
+                </div>
+            </div>
+            <div class="feedback" id="feedback-4">
+                <strong>Explication :</strong> Les pages servent au contenu permanent (À propos, Contact...), les
+                articles au contenu daté et catégorisé (actualités, blog).
+            </div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="question-card" data-question="5" data-correct="c">
+            <span class="question-number">5</span>
+            <span class="question-text">À quoi sert le texte alternatif (attribut alt) d'une image ?</span>
+            <span class="question-category">Médias</span>
+            <div class="options-list">
+                <div class="option-item" onclick="selectOption(this, 5, 'a')">
+                    <input type="radio" name="q5" id="q5a" value="a">
+                    <label for="q5a">À donner un titre décoratif à l'image</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 5, 'b')">
+                    <input type="radio" name="q5" id="q5b" value="b">
+                    <label for="q5b">À réduire la taille du fichier image</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 5, 'c')">
+                    <input type="radio" name="q5" id="q5c" value="c">
+                    <label for="q5c">À décrire l'image pour l'accessibilité et le SEO</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 5, 'd')">
+                    <input type="radio" name="q5" id="q5d" value="d">
+                    <label for="q5d">À créer une légende visible sous l'image</label>
+                </div>
+            </div>
+            <div class="feedback" id="feedback-5">
+                <strong>Explication :</strong> Le texte alternatif est lu par les lecteurs d'écran (accessibilité) et
+                analysé par les moteurs de recherche (SEO). Il décrit le contenu de l'image.
+            </div>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="question-card" data-question="6" data-correct="d">
+            <span class="question-number">6</span>
+            <span class="question-text">Quelle taille minimale WordPress recommande-t-il pour une favicon ?</span>
+            <span class="question-category">Apparence</span>
+            <div class="options-list">
+                <div class="option-item" onclick="selectOption(this, 6, 'a')">
+                    <input type="radio" name="q6" id="q6a" value="a">
+                    <label for="q6a">16×16 pixels</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 6, 'b')">
+                    <input type="radio" name="q6" id="q6b" value="b">
+                    <label for="q6b">32×32 pixels</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 6, 'c')">
+                    <input type="radio" name="q6" id="q6c" value="c">
+                    <label for="q6c">256×256 pixels</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 6, 'd')">
+                    <input type="radio" name="q6" id="q6d" value="d">
+                    <label for="q6d">512×512 pixels</label>
+                </div>
+            </div>
+            <div class="feedback" id="feedback-6">
+                <strong>Explication :</strong> WordPress recommande 512×512 pixels minimum. L'image est ensuite
+                automatiquement redimensionnée pour les différents usages (onglet navigateur, raccourcis...).
+            </div>
+        </div>
+
+        <!-- Question 7 -->
+        <div class="question-card" data-question="7" data-correct="b">
+            <span class="question-number">7</span>
+            <span class="question-text">Qu'est-ce que Gutenberg dans WordPress ?</span>
+            <span class="question-category">Contenus</span>
+            <div class="options-list">
+                <div class="option-item" onclick="selectOption(this, 7, 'a')">
+                    <input type="radio" name="q7" id="q7a" value="a">
+                    <label for="q7a">Un thème WordPress premium</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 7, 'b')">
+                    <input type="radio" name="q7" id="q7b" value="b">
+                    <label for="q7b">L'éditeur de contenu par blocs</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 7, 'c')">
+                    <input type="radio" name="q7" id="q7c" value="c">
+                    <label for="q7c">Une extension de sécurité</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 7, 'd')">
+                    <input type="radio" name="q7" id="q7d" value="d">
+                    <label for="q7d">Le gestionnaire de base de données</label>
+                </div>
+            </div>
+            <div class="feedback" id="feedback-7">
+                <strong>Explication :</strong> Gutenberg est l'éditeur par blocs introduit dans WordPress 5.0. Il permet
+                de construire le contenu en assemblant différents types de blocs (texte, image, colonnes...).
+            </div>
+        </div>
+
+        <!-- Question 8 -->
+        <div class="question-card" data-question="8" data-correct="a">
+            <span class="question-number">8</span>
+            <span class="question-text">Comment définir une page comme page d'accueil statique ?</span>
+            <span class="question-category">Réglages</span>
+            <div class="options-list">
+                <div class="option-item" onclick="selectOption(this, 8, 'a')">
+                    <input type="radio" name="q8" id="q8a" value="a">
+                    <label for="q8a">Réglages > Lecture > Une page statique</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 8, 'b')">
+                    <input type="radio" name="q8" id="q8b" value="b">
+                    <label for="q8b">Apparence > Menus > Page d'accueil</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 8, 'c')">
+                    <input type="radio" name="q8" id="q8c" value="c">
+                    <label for="q8c">Pages > Toutes les pages > Définir comme accueil</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 8, 'd')">
+                    <input type="radio" name="q8" id="q8d" value="d">
+                    <label for="q8d">Réglages > Général > Page par défaut</label>
+                </div>
+            </div>
+            <div class="feedback" id="feedback-8">
+                <strong>Explication :</strong> C'est dans <code>Réglages > Lecture</code> que l'on choisit entre
+                afficher les derniers articles ou une page statique en page d'accueil.
+            </div>
+        </div>
+
+        <!-- Question 9 -->
+        <div class="question-card" data-question="9" data-correct="c">
+            <span class="question-number">9</span>
+            <span class="question-text">Dans un thème classique, où crée-t-on et gère-t-on les menus ?</span>
+            <span class="question-category">Navigation</span>
+            <div class="options-list">
+                <div class="option-item" onclick="selectOption(this, 9, 'a')">
+                    <input type="radio" name="q9" id="q9a" value="a">
+                    <label for="q9a">Réglages > Navigation</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 9, 'b')">
+                    <input type="radio" name="q9" id="q9b" value="b">
+                    <label for="q9b">Pages > Menus</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 9, 'c')">
+                    <input type="radio" name="q9" id="q9c" value="c">
+                    <label for="q9c">Apparence > Menus</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 9, 'd')">
+                    <input type="radio" name="q9" id="q9d" value="d">
+                    <label for="q9d">Extensions > Menu Builder</label>
+                </div>
+            </div>
+            <div class="feedback" id="feedback-9">
+                <strong>Explication :</strong> Dans les thèmes classiques, le gestionnaire de menus se trouve dans
+                <code>Apparence > Menus</code>. Les thèmes à blocs utilisent le bloc Navigation dans l'Éditeur de site.
+            </div>
+        </div>
+
+        <!-- Question 10 -->
+        <div class="question-card" data-question="10" data-correct="b">
+            <span class="question-number">10</span>
+            <span class="question-text">Qu'est-ce qu'un thème « FSE » (Full Site Editing) ?</span>
+            <span class="question-category">Apparence</span>
+            <div class="options-list">
+                <div class="option-item" onclick="selectOption(this, 10, 'a')">
+                    <input type="radio" name="q10" id="q10a" value="a">
+                    <label for="q10a">Un thème payant avec des fonctionnalités avancées</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 10, 'b')">
+                    <input type="radio" name="q10" id="q10b" value="b">
+                    <label for="q10b">Un thème basé sur les blocs permettant d'éditer tout le site</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 10, 'c')">
+                    <input type="radio" name="q10" id="q10c" value="c">
+                    <label for="q10c">Un thème optimisé pour le référencement</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 10, 'd')">
+                    <input type="radio" name="q10" id="q10d" value="d">
+                    <label for="q10d">Un thème compatible uniquement avec Elementor</label>
+                </div>
+            </div>
+            <div class="feedback" id="feedback-10">
+                <strong>Explication :</strong> Les thèmes FSE (comme Twenty Twenty-Four) permettent de modifier
+                l'intégralité du site (header, footer, templates) avec l'éditeur de blocs, via
+                <code>Apparence > Éditeur</code>.
+            </div>
+        </div>
+
+        <!-- Question 11 -->
+        <div class="question-card" data-question="11" data-correct="d">
+            <span class="question-number">11</span>
+            <span class="question-text">Quel format est recommandé pour un logo avec fond transparent ?</span>
+            <span class="question-category">Médias</span>
+            <div class="options-list">
+                <div class="option-item" onclick="selectOption(this, 11, 'a')">
+                    <input type="radio" name="q11" id="q11a" value="a">
+                    <label for="q11a">JPG / JPEG</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 11, 'b')">
+                    <input type="radio" name="q11" id="q11b" value="b">
+                    <label for="q11b">GIF</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 11, 'c')">
+                    <input type="radio" name="q11" id="q11c" value="c">
+                    <label for="q11c">BMP</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 11, 'd')">
+                    <input type="radio" name="q11" id="q11d" value="d">
+                    <label for="q11d">PNG ou SVG</label>
+                </div>
+            </div>
+            <div class="feedback" id="feedback-11">
+                <strong>Explication :</strong> PNG et SVG supportent la transparence. SVG est vectoriel (qualité
+                parfaite à toute taille), PNG est matriciel avec transparence. JPG ne supporte pas la transparence.
+            </div>
+        </div>
+
+        <!-- Question 12 -->
+        <div class="question-card" data-question="12" data-correct="a">
+            <span class="question-number">12</span>
+            <span class="question-text">Où installe-t-on une nouvelle extension WordPress ?</span>
+            <span class="question-category">Extensions</span>
+            <div class="options-list">
+                <div class="option-item" onclick="selectOption(this, 12, 'a')">
+                    <input type="radio" name="q12" id="q12a" value="a">
+                    <label for="q12a">Extensions > Ajouter</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 12, 'b')">
+                    <input type="radio" name="q12" id="q12b" value="b">
+                    <label for="q12b">Apparence > Extensions</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 12, 'c')">
+                    <input type="radio" name="q12" id="q12c" value="c">
+                    <label for="q12c">Réglages > Plugins</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 12, 'd')">
+                    <input type="radio" name="q12" id="q12d" value="d">
+                    <label for="q12d">Outils > Installer</label>
+                </div>
+            </div>
+            <div class="feedback" id="feedback-12">
+                <strong>Explication :</strong> Le menu <code>Extensions > Ajouter</code> permet de rechercher, installer
+                et activer des plugins depuis le répertoire officiel WordPress ou en téléversant un fichier ZIP.
+            </div>
+        </div>
+
+        <!-- Question 13 -->
+        <div class="question-card" data-question="13" data-correct="c">
+            <span class="question-number">13</span>
+            <span class="question-text">Combien d'éléments maximum est-il conseillé d'avoir dans un menu principal
+                ?</span>
+            <span class="question-category">Navigation</span>
+            <div class="options-list">
+                <div class="option-item" onclick="selectOption(this, 13, 'a')">
+                    <input type="radio" name="q13" id="q13a" value="a">
+                    <label for="q13a">2-3 éléments</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 13, 'b')">
+                    <input type="radio" name="q13" id="q13b" value="b">
+                    <label for="q13b">10-12 éléments</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 13, 'c')">
+                    <input type="radio" name="q13" id="q13c" value="c">
+                    <label for="q13c">5-7 éléments</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 13, 'd')">
+                    <input type="radio" name="q13" id="q13d" value="d">
+                    <label for="q13d">Pas de limite recommandée</label>
+                </div>
+            </div>
+            <div class="feedback" id="feedback-13">
+                <strong>Explication :</strong> Un menu de 5 à 7 éléments reste lisible et mémorisable. Au-delà,
+                l'utilisateur peut se sentir perdu. On peut utiliser des sous-menus pour organiser plus de contenu.
+            </div>
+        </div>
+
+        <!-- Question 14 -->
+        <div class="question-card" data-question="14" data-correct="b">
+            <span class="question-number">14</span>
+            <span class="question-text">Pourquoi faut-il configurer les permaliens au début d'un projet ?</span>
+            <span class="question-category">Réglages</span>
+            <div class="options-list">
+                <div class="option-item" onclick="selectOption(this, 14, 'a')">
+                    <input type="radio" name="q14" id="q14a" value="a">
+                    <label for="q14a">Parce qu'on ne peut les modifier qu'une seule fois</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 14, 'b')">
+                    <input type="radio" name="q14" id="q14b" value="b">
+                    <label for="q14b">Pour éviter les erreurs 404 et préserver le référencement</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 14, 'c')">
+                    <input type="radio" name="q14" id="q14c" value="c">
+                    <label for="q14c">Parce que ça accélère le chargement du site</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 14, 'd')">
+                    <input type="radio" name="q14" id="q14d" value="d">
+                    <label for="q14d">Pour pouvoir installer des extensions</label>
+                </div>
+            </div>
+            <div class="feedback" id="feedback-14">
+                <strong>Explication :</strong> Changer les permaliens après publication modifie toutes les URLs. Les
+                anciens liens (partagés, indexés par Google) mèneront à des erreurs 404, ce qui nuit au SEO.
+            </div>
+        </div>
+
+        <!-- Question 15 -->
+        <div class="question-card" data-question="15" data-correct="d">
+            <span class="question-number">15</span>
+            <span class="question-text">Dans un thème à blocs, où trouve-t-on le bloc « Logo du site » pour modifier le
+                header ?</span>
+            <span class="question-category">Apparence</span>
+            <div class="options-list">
+                <div class="option-item" onclick="selectOption(this, 15, 'a')">
+                    <input type="radio" name="q15" id="q15a" value="a">
+                    <label for="q15a">Apparence > Personnaliser > Logo</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 15, 'b')">
+                    <input type="radio" name="q15" id="q15b" value="b">
+                    <label for="q15b">Médias > Logo du site</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 15, 'c')">
+                    <input type="radio" name="q15" id="q15c" value="c">
+                    <label for="q15c">Réglages > Identité</label>
+                </div>
+                <div class="option-item" onclick="selectOption(this, 15, 'd')">
+                    <input type="radio" name="q15" id="q15d" value="d">
+                    <label for="q15d">Apparence > Éditeur > Compositions > En-tête</label>
+                </div>
+            </div>
+            <div class="feedback" id="feedback-15">
+                <strong>Explication :</strong> Dans les thèmes FSE, on accède à l'en-tête via
+                <code>Apparence > Éditeur</code>, puis on sélectionne la composition « En-tête » pour y ajouter ou
+                modifier le bloc Logo du site.
+            </div>
+        </div>
+
+        <div class="submit-section">
+            <button type="button" class="submit-btn" id="submit-btn" onclick="submitQuiz()">Valider mes
+                réponses</button>
+            <button type="button" class="reset-btn" id="reset-btn" onclick="resetQuiz()"
+                style="display: none;">Recommencer</button>
+        </div>
+    </form>
+
+    <div class="note" id="tip-section">
+        <strong>💡 Conseil :</strong> Répondez à toutes les questions avant de valider. Vous pourrez ensuite voir les
+        corrections et explications pour chaque question.
+    </div>
+
+    <script>
+        let answers = {};
+        let submitted = false;
+
+        function selectOption(element, questionNum, value) {
+            if (submitted) return;
+
+            // Désélectionner les autres options de cette question
+            const questionCard = element.closest('.question-card');
+            questionCard.querySelectorAll('.option-item').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+
+            // Sélectionner cette option
+            element.classList.add('selected');
+            element.querySelector('input[type="radio"]').checked = true;
+            answers[questionNum] = value;
+
+            updateSubmitButton();
+        }
+
+        function updateSubmitButton() {
+            const answeredCount = Object.keys(answers).length;
+            const submitBtn = document.getElementById('submit-btn');
+
+            if (answeredCount === 15) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Valider mes réponses';
+            } else {
+                submitBtn.disabled = false;
+                submitBtn.textContent = `Valider (${answeredCount}/15 réponses)`;
+            }
+        }
+
+        function submitQuiz() {
+            if (Object.keys(answers).length === 0) {
+                alert('Veuillez répondre à au moins une question avant de valider.');
+                return;
+            }
+
+            submitted = true;
+            let correctCount = 0;
+            let incorrectCount = 0;
+
+            // Vérifier chaque question
+            document.querySelectorAll('.question-card').forEach(card => {
+                const questionNum = card.dataset.question;
+                const correctAnswer = card.dataset.correct;
+                const userAnswer = answers[questionNum];
+                const feedback = document.getElementById(`feedback-${questionNum}`);
+
+                // Marquer les réponses
+                card.querySelectorAll('.option-item').forEach(opt => {
+                    const input = opt.querySelector('input');
+                    if (input.value === correctAnswer) {
+                        opt.classList.add('correct-answer');
+                    }
+                    if (userAnswer && input.value === userAnswer && userAnswer !== correctAnswer) {
+                        opt.classList.add('wrong-answer');
+                    }
+                });
+
+                // Feedback
+                if (userAnswer === correctAnswer) {
+                    correctCount++;
+                    card.classList.add('correct');
+                    feedback.classList.add('correct', 'show');
+                    feedback.innerHTML = '✅ <strong>Correct !</strong> ' + feedback.innerHTML.replace('<strong>Explication :</strong>', '');
+                } else {
+                    incorrectCount++;
+                    card.classList.add('incorrect');
+                    feedback.classList.add('incorrect', 'show');
+                    if (!userAnswer) {
+                        feedback.innerHTML = '⚠️ <strong>Non répondu.</strong> ' + feedback.innerHTML;
+                    }
+                }
+            });
+
+            // Compter les non-répondues comme incorrectes
+            incorrectCount = 15 - correctCount;
+
+            // Afficher les résultats
+            const percentage = Math.round((correctCount / 15) * 100);
+            document.getElementById('score-value').textContent = correctCount;
+            document.getElementById('correct-count').textContent = correctCount;
+            document.getElementById('incorrect-count').textContent = incorrectCount;
+
+            const progressFill = document.getElementById('progress-fill');
+            progressFill.style.width = percentage + '%';
+
+            if (percentage >= 80) {
+                progressFill.style.background = 'var(--success)';
+                document.getElementById('results-message').textContent = '🎉 Excellent ! Vous maîtrisez les bases de WordPress !';
+            } else if (percentage >= 60) {
+                progressFill.style.background = 'var(--cuivre)';
+                document.getElementById('results-message').textContent = '👍 Bien ! Quelques points à revoir pour être au top.';
+            } else {
+                progressFill.style.background = '#c0392b';
+                document.getElementById('results-message').textContent = '📚 Continuez à apprendre ! Relisez les fiches d\'aide du TP.';
+            }
+
+            document.getElementById('results').classList.add('show');
+            document.getElementById('submit-btn').style.display = 'none';
+            document.getElementById('reset-btn').style.display = 'inline-block';
+            document.getElementById('tip-section').style.display = 'none';
+
+            // Scroll vers les résultats
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function resetQuiz() {
+            submitted = false;
+            answers = {};
+
+            // Réinitialiser l'affichage
+            document.querySelectorAll('.question-card').forEach(card => {
+                card.classList.remove('correct', 'incorrect');
+                card.querySelectorAll('.option-item').forEach(opt => {
+                    opt.classList.remove('selected', 'correct-answer', 'wrong-answer');
+                    opt.querySelector('input').checked = false;
+                });
+            });
+
+            document.querySelectorAll('.feedback').forEach(fb => {
+                fb.classList.remove('show', 'correct', 'incorrect');
+            });
+
+            document.getElementById('results').classList.remove('show');
+            document.getElementById('submit-btn').style.display = 'inline-block';
+            document.getElementById('submit-btn').textContent = 'Valider (0/15 réponses)';
+            document.getElementById('reset-btn').style.display = 'none';
+            document.getElementById('tip-section').style.display = 'block';
+
+            // Scroll vers le haut
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialisation
+        updateSubmitButton();
+    </script>
+</body>
+
+</html>
