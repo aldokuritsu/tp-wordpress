@@ -4,33 +4,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aide : Permaliens - TP WordPress</title>
+    <title>Aide : Permaliens et page d'accueil - TP WordPress</title>
     <link rel="stylesheet" href="aide.css">
+    <style>
+        .warning {
+            background: rgba(107, 68, 35, 0.1);
+            border: 1px solid var(--torrefaction);
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .warning strong {
+            color: var(--torrefaction);
+        }
+
+        .note {
+            background: rgba(45, 90, 39, 0.1);
+            border: 1px solid var(--success);
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .note strong {
+            color: var(--success);
+        }
+
+        .options-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: var(--blanc-casse);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .options-table th,
+        .options-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--kraft);
+        }
+
+        .options-table th {
+            background: var(--espresso);
+            color: white;
+            font-weight: bold;
+        }
+
+        .options-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .options-table code {
+            background: var(--creme);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .recommended {
+            background: rgba(45, 90, 39, 0.1);
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .sub-step {
+            margin-left: 2.5rem;
+            padding: 0.75rem 1rem;
+            background: var(--creme);
+            border-radius: 6px;
+            margin-top: 0.5rem;
+        }
+
+        .divider {
+            border: none;
+            border-top: 2px dashed var(--kraft);
+            margin: 2.5rem 0;
+        }
+    </style>
 </head>
 
 <body>
     <a href="../index.html" class="back-link">← Retour au TP</a>
-    <h1>Réglages des permaliens</h1>
-    <p>Les permaliens sont les adresses permanentes de vos pages et articles. Une structure claire est essentielle pour
-        le SEO.</p>
+    <h1>Permaliens et page d'accueil</h1>
+    <p>Ces réglages fondamentaux définissent la structure des URLs de votre site et déterminent ce que vos visiteurs
+        voient en arrivant sur votre site.</p>
 
-    <h2>Comment régler les permaliens ?</h2>
+    <div class="note">
+        <strong>✅ Bonne nouvelle :</strong> Ces réglages sont <strong>universels</strong> et fonctionnent de la même
+        manière quel que soit votre thème (classique ou à blocs).
+    </div>
+
+    <h2>1. Réglages des permaliens</h2>
+    <p>Les permaliens sont les adresses permanentes (URLs) de vos pages et articles. Une structure claire est
+        essentielle pour le <strong>référencement (SEO)</strong> et l'expérience utilisateur.</p>
+
     <div class="step">
         <span class="step-number">1</span>
-        Allez dans <strong>Réglages</strong> > <strong>Permaliens</strong>.
+        Dans le tableau de bord, allez dans <strong>Réglages</strong> > <strong>Permaliens</strong>.
     </div>
+
     <div class="step">
         <span class="step-number">2</span>
-        Sélectionnez l'option <strong>Titre de la publication</strong> (Structure la plus propre).
+        Choisissez une structure parmi les options proposées :
     </div>
+
+    <table class="options-table">
+        <thead>
+            <tr>
+                <th>Option</th>
+                <th>Exemple d'URL</th>
+                <th>Usage</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Simple</td>
+                <td><code>?p=123</code></td>
+                <td>Par défaut, à éviter</td>
+            </tr>
+            <tr>
+                <td>Date et titre</td>
+                <td><code>/2025/01/mon-article/</code></td>
+                <td>Blogs d'actualité</td>
+            </tr>
+            <tr>
+                <td>Mois et titre</td>
+                <td><code>/2025/01/mon-article/</code></td>
+                <td>Blogs d'actualité</td>
+            </tr>
+            <tr>
+                <td>Numérique</td>
+                <td><code>/archives/123</code></td>
+                <td>Rarement utilisé</td>
+            </tr>
+            <tr class="recommended">
+                <td>Titre de la publication <span class="badge">Recommandé</span></td>
+                <td><code>/mon-article/</code></td>
+                <td>Sites vitrine, la plupart des cas</td>
+            </tr>
+            <tr>
+                <td>Structure personnalisée</td>
+                <td><code>/%category%/%postname%/</code></td>
+                <td>Sites avec beaucoup de catégories</td>
+            </tr>
+        </tbody>
+    </table>
+
     <div class="step">
         <span class="step-number">3</span>
-        N'oubliez pas de cliquer sur <strong>Enregistrer les modifications</strong> en bas de page.
+        Sélectionnez <strong>Titre de la publication</strong> (la structure la plus propre pour un site vitrine).
+    </div>
+
+    <div class="step">
+        <span class="step-number">4</span>
+        Cliquez sur <strong>Enregistrer les modifications</strong> en bas de page.
+    </div>
+
+    <div class="warning">
+        <strong>⚠️ Attention :</strong> Modifiez les permaliens <strong>au tout début</strong> de votre projet. Les
+        changer plus tard peut créer des erreurs 404 (pages introuvables) et nuire à votre référencement.
+    </div>
+
+    <hr class="divider">
+
+    <h2>2. Définir la page d'accueil</h2>
+    <p>Par défaut, WordPress affiche vos derniers articles sur la page d'accueil. Pour un <strong>site vitrine</strong>,
+        vous voudrez probablement afficher une page statique personnalisée.</p>
+
+    <div class="step">
+        <span class="step-number">1</span>
+        Assurez-vous d'avoir créé au moins une page qui servira de page d'accueil (ex : « Accueil » ou « Bienvenue »).
+    </div>
+
+    <div class="step">
+        <span class="step-number">2</span>
+        Dans le tableau de bord, allez dans <strong>Réglages</strong> > <strong>Lecture</strong>.
+    </div>
+
+    <div class="step">
+        <span class="step-number">3</span>
+        Dans la section « La page d'accueil affiche », sélectionnez <strong>Une page statique</strong>.
+    </div>
+
+    <div class="step">
+        <span class="step-number">4</span>
+        Configurez les deux options :
+        <div class="sub-step">
+            <strong>Page d'accueil :</strong> Sélectionnez la page à afficher en arrivant sur le site (ex : « Accueil
+            »).
+        </div>
+        <div class="sub-step">
+            <strong>Page des articles :</strong> Si vous avez un blog, sélectionnez la page qui listera vos articles (ex
+            : « Actualités » ou « Blog »). Sinon, laissez vide.
+        </div>
+    </div>
+
+    <div class="step">
+        <span class="step-number">5</span>
+        Cliquez sur <strong>Enregistrer les modifications</strong>.
     </div>
 
     <div class="tip">
-        <strong>⚠️ Attention :</strong> Changer les permaliens une fois que le site a beaucoup de contenu peut créer des
-        erreurs 404. Il est préférable de le faire au tout début du projet.
+        <strong>💡 Astuce :</strong> Vous pouvez aussi définir la page d'accueil directement depuis l'éditeur de page :
+        ouvrez la page souhaitée, cliquez sur l'onglet <strong>Page</strong> dans le panneau de droite, puis dans la
+        section <strong>Résumé</strong>, réglez « Page d'accueil du site » sur <strong>Oui</strong>.
+    </div>
+
+    <h2>3. Vérification</h2>
+    <p>Une fois ces réglages effectués, vérifiez que tout fonctionne :</p>
+
+    <div class="note">
+        <strong>✅ Checklist :</strong>
+        <ul style="margin: 0.5rem 0 0 1rem;">
+            <li>Visitez votre site : la bonne page d'accueil s'affiche</li>
+            <li>Les URLs de vos pages sont propres (ex : <code>/notre-histoire/</code> et non <code>/?page_id=12</code>)
+            </li>
+            <li>Tous les liens du menu fonctionnent correctement</li>
+        </ul>
     </div>
 </body>
 

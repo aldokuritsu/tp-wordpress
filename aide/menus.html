@@ -6,6 +6,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aide : Menus - TP WordPress</title>
     <link rel="stylesheet" href="aide.css">
+    <style>
+        /* Styles additionnels pour les onglets */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0;
+        }
+
+        .tab {
+            padding: 0.75rem 1.25rem;
+            background: var(--kraft);
+            border: none;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--torrefaction);
+            transition: all 0.2s ease;
+        }
+
+        .tab:hover {
+            background: var(--blanc-casse);
+        }
+
+        .tab.active {
+            background: var(--blanc-casse);
+            color: var(--espresso);
+            box-shadow: 0 -2px 10px var(--shadow);
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--blanc-casse);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 8px;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .warning {
+            background: rgba(107, 68, 35, 0.1);
+            border: 1px solid var(--torrefaction);
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .warning strong {
+            color: var(--torrefaction);
+        }
+
+        .note {
+            background: rgba(45, 90, 39, 0.1);
+            border: 1px solid var(--success);
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .note strong {
+            color: var(--success);
+        }
+
+        .sub-step {
+            margin-left: 2.5rem;
+            padding: 0.75rem 1rem;
+            background: var(--creme);
+            border-radius: 6px;
+            margin-top: 0.5rem;
+        }
+
+        h3 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .tab-content .step:first-of-type {
+            margin-top: 1rem;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,32 +98,163 @@
     <p>Le menu est l'outil principal de navigation pour vos visiteurs. Il permet d'accéder facilement aux différentes
         pages du site.</p>
 
-    <h2>1. Créer un menu</h2>
-    <div class="step">
-        <span class="step-number">1</span>
-        Allez dans <strong>Apparence</strong> > <strong>Menus</strong>.
-    </div>
-    <div class="step">
-        <span class="step-number">2</span>
-        Donnez-lui un nom (ex: "Menu Principal") et cliquez sur <strong>Créer le menu</strong>.
+    <div class="warning">
+        <strong>⚠️ Important :</strong> La gestion des menus diffère selon votre thème. Les <strong>thèmes à
+            blocs</strong> utilisent le <strong>bloc Navigation</strong> dans l'Éditeur de site, tandis que les
+        <strong>thèmes classiques</strong> utilisent le gestionnaire <strong>Apparence > Menus</strong>.
     </div>
 
-    <h2>2. Ajouter des éléments</h2>
-    <div class="step">
-        Cochez les pages que vous avez créées (Histoire, Nos Cafés, etc.) dans la colonne de gauche et cliquez sur
-        <strong>Ajouter au menu</strong>.
+    <h2>Créer et gérer votre menu</h2>
+    <p>Choisissez la méthode correspondant à votre thème :</p>
+
+    <div class="tabs">
+        <button class="tab active" onclick="showTab('fse')">🧱 Thème à blocs (FSE)</button>
+        <button class="tab" onclick="showTab('classic')">🎨 Thème classique</button>
     </div>
 
-    <h2>3. Emplacements de menu</h2>
-    <div class="step">
-        En bas de la page, dans "Réglages du menu", cochez <strong>Menu principal</strong> (ou "Primary") pour que le
-        menu apparaisse en haut de votre site.
+    <div id="fse" class="tab-content active">
+        <h3>Avec le bloc Navigation</h3>
+        <p>Cette méthode s'applique aux thèmes modernes comme <em>Twenty Twenty-Four</em>. Le menu est un
+            <strong>bloc</strong> que vous modifiez directement dans l'en-tête.</p>
+
+        <div class="step">
+            <span class="step-number">1</span>
+            Dans le tableau de bord, allez dans <strong>Apparence</strong> > <strong>Éditeur</strong>.
+        </div>
+
+        <div class="step">
+            <span class="step-number">2</span>
+            Dans le menu latéral, cliquez sur <strong>Compositions</strong> puis sélectionnez <strong>En-tête</strong>
+            pour modifier le header.
+        </div>
+
+        <div class="step">
+            <span class="step-number">3</span>
+            Cliquez sur le <strong>bloc Navigation</strong> existant (les liens du menu). Si vous ne le voyez pas,
+            utilisez la <strong>Vue en liste</strong> (icône ☰ en haut à gauche) pour le repérer.
+        </div>
+
+        <div class="step">
+            <span class="step-number">4</span>
+            <strong>Pour ajouter un lien :</strong>
+            <div class="sub-step">
+                Cliquez sur le <strong>+</strong> à l'intérieur du bloc Navigation. Vous pouvez ajouter :
+                <ul style="margin: 0.5rem 0 0 1rem;">
+                    <li><strong>Lien de page</strong> : sélectionnez une page existante</li>
+                    <li><strong>Lien personnalisé</strong> : saisissez une URL et un libellé</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="step-number">5</span>
+            <strong>Pour réorganiser :</strong>
+            <div class="sub-step">
+                Utilisez le glisser-déposer directement dans l'éditeur, ou passez par la <strong>Vue en liste</strong>
+                pour déplacer les éléments plus précisément.
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="step-number">6</span>
+            <strong>Pour créer un sous-menu :</strong>
+            <div class="sub-step">
+                Dans la Vue en liste, glissez un élément <strong>légèrement vers la droite</strong> sous un autre
+                élément pour le transformer en sous-menu.
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="step-number">7</span>
+            Cliquez sur <strong>Enregistrer</strong> en haut à droite.
+        </div>
+
+        <div class="tip">
+            <strong>💡 Astuce :</strong> Vous pouvez personnaliser l'apparence du menu (couleurs, espacement, style) via
+            le panneau de droite lorsque le bloc Navigation est sélectionné.
+        </div>
     </div>
 
-    <div class="tip">
-        <strong>💡 Astuce :</strong> Vous pouvez réorganiser l'ordre des éléments en les faisant glisser-déposer (Drag &
-        Drop).
+    <div id="classic" class="tab-content">
+        <h3>Avec le gestionnaire de menus</h3>
+        <p>Cette méthode s'applique aux thèmes classiques. Les menus sont gérés dans une interface dédiée.</p>
+
+        <div class="step">
+            <span class="step-number">1</span>
+            Dans le tableau de bord, allez dans <strong>Apparence</strong> > <strong>Menus</strong>.
+        </div>
+
+        <div class="step">
+            <span class="step-number">2</span>
+            Donnez un nom à votre menu (ex : « Menu Principal ») et cliquez sur <strong>Créer le menu</strong>.
+        </div>
+
+        <div class="step">
+            <span class="step-number">3</span>
+            <strong>Pour ajouter des éléments :</strong>
+            <div class="sub-step">
+                Dans la colonne de gauche, cochez les pages souhaitées (Histoire, Nos Cafés, etc.) puis cliquez sur
+                <strong>Ajouter au menu</strong>.
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="step-number">4</span>
+            <strong>Pour réorganiser :</strong>
+            <div class="sub-step">
+                Faites glisser-déposer les éléments pour changer leur ordre. Décalez un élément vers la droite pour
+                créer un sous-menu.
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="step-number">5</span>
+            <strong>Assigner l'emplacement :</strong>
+            <div class="sub-step">
+                En bas de la page, dans « Réglages du menu », cochez <strong>Menu principal</strong> (ou « Primary »)
+                pour afficher le menu dans l'en-tête.
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="step-number">6</span>
+            Cliquez sur <strong>Enregistrer le menu</strong>.
+        </div>
+
+        <div class="tip">
+            <strong>💡 Astuce :</strong> Vous pouvez créer plusieurs menus (ex : un pour l'en-tête, un pour le pied de
+            page) et les assigner à différents emplacements.
+        </div>
     </div>
+
+    <h2>Bonnes pratiques</h2>
+
+    <div class="note">
+        <strong>✅ Conseils pour un bon menu :</strong>
+        <ul style="margin: 0.5rem 0 0 1rem;">
+            <li>Limitez-vous à <strong>5-7 éléments</strong> maximum dans le menu principal</li>
+            <li>Utilisez des <strong>libellés courts et clairs</strong> (« Contact » plutôt que « Nous contacter »)</li>
+            <li>Placez les pages les plus importantes <strong>en premier</strong></li>
+            <li>Évitez plus de <strong>2 niveaux</strong> de sous-menus</li>
+        </ul>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            // Masquer tous les contenus
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            // Désactiver tous les onglets
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            // Afficher le contenu sélectionné
+            document.getElementById(tabId).classList.add('active');
+            // Activer l'onglet cliqué
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 
 </html>
